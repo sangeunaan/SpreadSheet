@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormulaEvaluator", "FormulaEvaluator\FormulaEvaluator.csproj", "{75BDBA30-2956-4D06-9DF6-03D1C118E95C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_The_Evaluator_Console_App", "Test_The_Evaluator_Console_App\Test_The_Evaluator_Console_App.csproj", "{E145A1B7-8754-401E-9778-956069FF6079}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{75BDBA30-2956-4D06-9DF6-03D1C118E95C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75BDBA30-2956-4D06-9DF6-03D1C118E95C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75BDBA30-2956-4D06-9DF6-03D1C118E95C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E145A1B7-8754-401E-9778-956069FF6079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E145A1B7-8754-401E-9778-956069FF6079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E145A1B7-8754-401E-9778-956069FF6079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E145A1B7-8754-401E-9778-956069FF6079}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
