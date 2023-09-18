@@ -10,16 +10,17 @@
 /// 
 /// File Contents 
 /// 
-///    [... and of course you should describe the contents of the file in broad terms here ...] 
+///    [This is the library to perform the evaluating formula expression which is written in string datatype.] 
 /// </summary>
 
 /// <summary>
 ///   The function does ....  You should be aware of the following edge cases ....
 /// 
 /// </summary>
-/// <param name="x"> x represents ... </param>
-/// <param name="y"> y represents ... </param>
-/// <returns> The value ABC will be returned representing ... </returns>
+/// <param name="t"> t represents the first elements from the expression. </param>
+/// <param name="v1"> v1 represents the first element of the value stack </param>
+/// <param name="v2"> v2 represents the second element of the value stack </param>
+/// <returns> The function will return the value of the calculated value, which is the top element of the value stack. </returns>
 
 
 using System;
@@ -38,12 +39,9 @@ namespace FormulaEvaluator
         public static int Evaluate(string expression)
         {
             string[] substrings = Regex.Split(expression, "(\\()|(\\))|(-)|(\\+)|(\\*)|(/)");
-
-
+             
             Stack<string> operators = new Stack<string>();
             Stack<int> value = new Stack<int>();
-
-            int ans = 0; 
 
             foreach (string t in substrings)
             {
@@ -52,26 +50,21 @@ namespace FormulaEvaluator
                 //Condition1: t in an integer
                 if (isNumeric)
                 {
-
-                    if (value.Count == 0)
-                    {
-                        Console.WriteLine("Your value stack is empty !");
-                    }
-
-                    else if (value.Count > 0 && operators.Count() > 0 && operators.Peek() == "*")
+                    if (value.Count > 0 && operators.Count() > 0 && operators.Peek() == "*")
                     {
                         int v1 = value.Pop();
                         operators.Pop();
-                        value.Push(v1 * num);
+                        int val = v1 * num;
+                        value.Push(val);
                     }
                     else if (value.Count > 0 && operators.Count() > 0 && operators.Peek() == "/")
                     {
                         int v1 = value.Pop();
                         operators.Pop();
-
+                        int val = v1 / num; 
                         try
                         {
-                            value.Push(v1 / num);
+                            value.Push(val);
                         }
                         catch (DivideByZeroException)
                         {
@@ -84,10 +77,10 @@ namespace FormulaEvaluator
                     }
                 }
 
-               //Condition2: t is + or -
-                else if ((operators.Count>0 && t == "+" ) || (operators.Count>0 && t == "-"))
+                //Condition2: t is + or -
+                else if (t == "+" || t == "-")
                 {
-                    if(value.Count>1)
+                    if (value.Count > 1 && operators.Count > 0)
                     {
                         int v1 = value.Pop();
                         int v2 = value.Pop();
@@ -101,24 +94,26 @@ namespace FormulaEvaluator
                         {
                             value.Push(v2 - v1);
                         }
-
-                        operators.Push(t);
+                        else
+                        {
+                            operators.Push(t);
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Your value stack contains fewer than 2 values.");
+                        operators.Push(t);
                     }
 
                 }
 
                 //Condition3: t is * or /
-                else if ((operators.Count > 0 && t == "*") || (operators.Count >0 && t == "/"))
+                else if (t == "*" || t == "/")
                 {
                     operators.Push(t);
                 }
 
                 //Condigion4: t is (
-                else if ((operators.Count >0 && t == "("))
+                else if ((operators.Count > 0 && t == "("))
                 {
                     operators.Push(t);
                 }
@@ -126,7 +121,7 @@ namespace FormulaEvaluator
                 //Condition5: t is )
                 else if ((operators.Count > 0 && t == ")"))
                 {
-                    if(value.Count()>1)
+                    if (value.Count() > 1)
                     {
                         if (operators.Peek() == "+" || operators.Peek() == "-")
                         {
@@ -162,8 +157,15 @@ namespace FormulaEvaluator
                             }
                             else if (oper == "/")
                             {
-                                operators.Pop();
-                                value.Push(v2 / v1);
+                                try
+                                {
+                                    operators.Pop();
+                                    value.Push(v2 / v1);
+                                }
+                                catch (DivideByZeroException)
+                                {
+                                    Console.WriteLine("division by 0");
+                                }
                             }
                         }
                     }
@@ -171,25 +173,19 @@ namespace FormulaEvaluator
                     {
                         Console.WriteLine("Your value stack contains fewer than 2 values.");
                     }
-                    
+
                 }
             }
-
             //When the last token has been processed
-            if (operators.Count == 0 && value.Count > 0)
-            {
-                ans = value.Peek();
-                value.Pop();
-            }
 
-            else if (operators.Count > 0 && value.Count > 0)
+            if (operators.Count == 1 && value.Count == 2)
             {
                 if (operators.Peek() == "+")
                 {
                     int v1 = value.Pop();
                     int v2 = value.Pop();
                     operators.Pop();
-                    ans = v2 + v1;
+                    value.Push(v1 + v2);
                 }
 
                 else if (operators.Peek() == "-")
@@ -197,10 +193,10 @@ namespace FormulaEvaluator
                     int v1 = value.Pop();
                     int v2 = value.Pop();
                     operators.Pop();
-                    ans = v2 - v1;
+                    value.Push(v2 - v1);
                 }
             }
-            return ans;
+            return value.Peek();
         } 
        
     }

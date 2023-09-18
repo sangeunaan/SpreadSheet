@@ -1,22 +1,33 @@
 ﻿using FormulaEvaluator;
+using System;
 
-
-    void test1()
-    {
-        if (Evaluator.Evaluate("5+5") == 10)
-        {
-            Console.WriteLine("Happy Day!");
-        }
-    }
-
-    void test1()
+class Test_the_Evaluator_Console_App
 {
-    if (Evaluator.Evaluate("5+5") == 10)
+    static void Main()
     {
-        Console.WriteLine("Happy Day!");
+        //test1();
+        test2();
     }
+
+    public static void test1()
+    {
+        if(Evaluator.Evaluate("5+5") == 10)
+        {
+            Console.WriteLine("Happy Day!"); 
+        }
+
+    }
+
+    public static void test2()
+    {
+        Console.WriteLine(Evaluator.Evaluate("((2+2)*3+19)*2"));
+    }
+
 }
 
+
+
+/*
 try
     {
         Evaluator.Evaluate(" -A- ");
@@ -25,7 +36,5 @@ try
     {
         Console.WriteLine("Enter the appropriate expression!");
     }
+*/
 
-
-
-test1();
