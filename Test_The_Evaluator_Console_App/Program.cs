@@ -10,9 +10,9 @@ class Test_the_Evaluator_Console_App
 
         try
         {
-            Evaluator.Evaluate("2/0");
+            Evaluator.Evaluate("2/0", null);
         }
-        catch(DivideByZeroException)
+        catch (DivideByZeroException)
         {
             Console.WriteLine("You cannot divide by zero.");
         }
@@ -20,7 +20,7 @@ class Test_the_Evaluator_Console_App
 
         try
         {
-            Evaluator.Evaluate("((2+3)*2");
+            Evaluator.Evaluate("((2+3)*2",null);
         }
         catch(Exception)
         {
@@ -29,12 +29,6 @@ class Test_the_Evaluator_Console_App
 
         
 
-    }
-
-
-    public static void test1()
-    {
-        Console.WriteLine(Evaluator.Evaluate("((2+2)*3+19)*2"));
     }
 
 }
