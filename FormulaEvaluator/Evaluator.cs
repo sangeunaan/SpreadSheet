@@ -61,15 +61,14 @@ namespace FormulaEvaluator
                     {
                         int v1 = value.Pop();
                         operators.Pop();
-                        int val = v1 / num; 
                         try
                         {
+                            int val = v1 / num;
                             value.Push(val);
                         }
                         catch (DivideByZeroException)
                         {
                             Console.WriteLine("division by 0");
-                            throw new Exception("error");
                         }
                     }
                     else
@@ -166,7 +165,6 @@ namespace FormulaEvaluator
                                 catch (DivideByZeroException)
                                 {
                                     Console.WriteLine("division by 0");
-                                    throw new Exception("error");
                                 }
                             }
                         }
