@@ -169,11 +169,6 @@ namespace FormulaEvaluator
                             }
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("Your value stack contains fewer than 2 values.");
-                    }
-
                 }
             }
             //When the last token has been processed

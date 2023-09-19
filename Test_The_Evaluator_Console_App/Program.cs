@@ -5,20 +5,34 @@ class Test_the_Evaluator_Console_App
 {
     static void Main()
     {
-        //test1();
-        test2();
-    }
 
-    public static void test1()
-    {
-        if(Evaluator.Evaluate("5+5") == 10)
+        test1();
+
+        try
         {
-            Console.WriteLine("Happy Day!"); 
+            Evaluator.Evaluate("2/0");
+        }
+        catch(DivideByZeroException)
+        {
+            Console.WriteLine("You cannot divide by zero.");
         }
 
+
+        try
+        {
+            Evaluator.Evaluate("((2+3)*2");
+        }
+        catch(Exception)
+        {
+            Console.WriteLine("Yor expression has extra parenthesis.");
+        }
+
+        
+
     }
 
-    public static void test2()
+
+    public static void test1()
     {
         Console.WriteLine(Evaluator.Evaluate("((2+2)*3+19)*2"));
     }
