@@ -69,6 +69,7 @@ namespace FormulaEvaluator
                         catch (DivideByZeroException)
                         {
                             Console.WriteLine("division by 0");
+                            throw new Exception("error");
                         }
                     }
                     else
@@ -165,6 +166,7 @@ namespace FormulaEvaluator
                                 catch (DivideByZeroException)
                                 {
                                     Console.WriteLine("division by 0");
+                                    throw new Exception("error");
                                 }
                             }
                         }

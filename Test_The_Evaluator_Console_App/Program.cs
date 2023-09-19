@@ -6,8 +6,6 @@ class Test_the_Evaluator_Console_App
     static void Main()
     {
 
-        test1();
-
         try
         {
             Evaluator.Evaluate("2/0", null);
@@ -20,7 +18,7 @@ class Test_the_Evaluator_Console_App
 
         try
         {
-            Evaluator.Evaluate("((2+3)*2",null);
+            Evaluator.Evaluate("((2+3)*2", null);
         }
         catch(Exception)
         {
@@ -34,15 +32,4 @@ class Test_the_Evaluator_Console_App
 }
 
 
-
-/*
-try
-    {
-        Evaluator.Evaluate(" -A- ");
-    }
-    catch (ArgumentException)
-    {
-        Console.WriteLine("Enter the appropriate expression!");
-    }
-*/
 
