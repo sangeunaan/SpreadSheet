@@ -10,7 +10,10 @@ class Test_the_Evaluator_Console_App
         testDivision();
         testSubtraction();
         testMultiplication();
+        testPlusParenthesis();
         testDivideByZero();
+
+
 
     }
 
@@ -34,11 +37,17 @@ class Test_the_Evaluator_Console_App
         Console.WriteLine(Evaluator.Evaluate("3*3", null));
     }
 
+    public static void testPlusParenthesis()
+    {
+        Console.WriteLine(Evaluator.Evaluate("(9+5)+2", null));
+    }
     public static void testDivideByZero()
     {
         Console.WriteLine(Evaluator.Evaluate("3/0", null));
     }
+
 }
+
 
 
 

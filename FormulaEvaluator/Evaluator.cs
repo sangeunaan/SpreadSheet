@@ -59,11 +59,12 @@ namespace FormulaEvaluator
                     }
                     else if (value.Count > 0 && operators.Count() > 0 && operators.Peek() == "/")
                     {
-                        int v1 = value.Pop();
+                        int v1 = value.Peek();
                         operators.Pop();
                         try
                         {
                             int val = v1 / num;
+                            value.Pop();
                             value.Push(val);
                         }
                         catch (DivideByZeroException)
