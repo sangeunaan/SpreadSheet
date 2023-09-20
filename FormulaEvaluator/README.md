@@ -3,7 +3,7 @@ Author: Sangeun An
 Partner:    None
 Date:       9-13-2022
 Course:     CS 3500, ECE
-GitHub ID:  [ID]
+GitHub ID:  sangeunaan
 Repo:       https://github.com/Utah-School-of-Computing-de-St-Germain
 Commit #:   1b10211fa6b7e5ed43c8f81463475c7ab39bded9
 Solution:   Spreadsheet
@@ -13,30 +13,25 @@ Copyright:  CS 3500 and Sangeun An - This work may not be copied for use in Acad
 # Overview of the Spreadsheet functionality
 
 The Spreadsheet program is currently capable of calculating the summation, subtraction, multiplication, and division of an expression written in string datatype.
-Future extensions are ...
+Future extensions will be the form of the spreadsheet
 
 # Time Expenditures:
 
-    1. Assignment One:   Predicted Hours:          10        Actual Hours:       20
+    1. Assignment One:   Predicted Hours:          10        Actual Hours:       30
 
 
 # Comments to Evaluators:
 
-Have some problem on exception handlings.
+Have some problem on exception handlings. It works well in debugger but gradescope can't read it.
+Have some complication on dealing with parenthesis
 
-# Assignment Specific Topics
-Any additional feedback or write up required by the assignment.
-
-Leave a space for a new paragraph.
-
-Make sure you spell check your file (did you install the VS spell checker?) and use your best writing ability.
 
 # Consulted Peers:
 
-List any peers (or other people) in the class (or outside for that matter) that you talked with about the project for more than one minute.
+Donggeon Kim
+Dakyung Kang
 
 # References:
 
-    1. Title of page - URL
-    2. Title of page - URL
-    3. Title of page - URL
+    1. Exception-handling statements - throw, try-catch, try-finally, and try-catch-finally - https://learn.microsoft.com/ko-kr/dotnet/csharp/language-reference/statements/exception-handling-statements
+    2. C# Program to Demonstrate DivideByZero Exception - https://www.sanfoundry.com/csharp-program-divide-by-zero-exception/
