@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -72,6 +73,20 @@ namespace FormulaEvaluator
                             Console.WriteLine("division by 0");
                         }
                     }
+                    else if (value.Count > 0 && operators.Count() > 0 && operators.Peek() == "+")
+                    {
+                         int v1 = value.Pop();
+                         operators.Pop();
+                         int val = v1 + num;
+                         value.Push(val);
+                    }
+                    else if (value.Count > 0 && operators.Count() > 0 && operators.Peek() == "-")
+                    {
+                         int v1 = value.Pop();
+                         operators.Pop();
+                         int val = v1 - num;
+                         value.Push(val);
+                    }
                     else
                     {
                         value.Push(num);
@@ -96,7 +111,7 @@ namespace FormulaEvaluator
                             value.Push(v2 - v1);
                         }
                         else
-                        {
+                        { 
                             operators.Push(t);
                         }
                     }
@@ -142,6 +157,7 @@ namespace FormulaEvaluator
 
                         else if (operators.Peek() == "(")
                         {
+
                             operators.Pop();
                         }
 
@@ -153,7 +169,6 @@ namespace FormulaEvaluator
 
                             if (oper == "*")
                             {
-                                operators.Pop();
                                 value.Push(v2 * v1);
                             }
                             else if (oper == "/")
@@ -176,6 +191,7 @@ namespace FormulaEvaluator
 
             if (operators.Count == 1 && value.Count == 2)
             {
+
                 if (operators.Peek() == "+")
                 {
                     int v1 = value.Pop();
@@ -191,7 +207,31 @@ namespace FormulaEvaluator
                     operators.Pop();
                     value.Push(v2 - v1);
                 }
+
+                if (operators.Peek() == "*")
+                {
+                    int v1 = value.Pop();
+                    int v2 = value.Pop();
+                    operators.Pop();
+                    value.Push(v1 * v2);
+                }
+
+                else if (operators.Peek() == "/")
+                {
+                    int v1 = value.Pop();
+                    int v2 = value.Pop();
+                    operators.Pop();
+                    try
+                    {
+                        value.Push(v2 / v1);
+                    }
+                    catch 
+                    {
+                        Console.WriteLine("division by 0");
+                    }
+                }
             }
+
             return value.Peek();
         } 
        
