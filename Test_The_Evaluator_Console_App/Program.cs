@@ -39,7 +39,7 @@ class Test_the_Evaluator_Console_App
 
     public static void testTimeParenthesis()
     {
-        Console.WriteLine(Evaluator.Evaluate("(9+5)*2", null));
+        Console.WriteLine(Evaluator.Evaluate("(10+3)*3", null));
     }
 
     public static void testDivideByZero()

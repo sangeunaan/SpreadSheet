@@ -114,7 +114,7 @@ namespace FormulaEvaluator
                 }
 
                 //Condigion4: t is (
-                else if ((operators.Count > 0 && t == "("))
+                else if (t == "(")
                 {
                     operators.Push(t);
                 }
@@ -122,54 +122,50 @@ namespace FormulaEvaluator
                 //Condition5: t is )
                 else if ((operators.Count > 0 && t == ")"))
                 {
-                    if (value.Count() > 1)
+                    if ((value.Count() > 1 && operators.Peek() == "+") || (value.Count() > 1 && operators.Peek() == "-"))
                     {
-                        if (operators.Peek() == "+" || operators.Peek() == "-")
-                        {
-                            int v1 = value.Pop();
-                            int v2 = value.Pop();
-                            string oper = operators.Pop();
+                        int v1 = value.Pop();
+                        int v2 = value.Pop();
+                        string oper = operators.Pop();
 
-                            if (oper == "+")
-                            {
-                                value.Push(v2 + v1);
-                            }
-                            else if (oper == "-")
-                            {
-                                value.Push(v2 - v1);
-                            }
+                        if (oper == "+")
+                        {
+                            value.Push(v2 + v1);
+
                         }
-
-                        else if (operators.Peek() == "(")
+                        else if (oper == "-")
                         {
-                            operators.Pop();
-                        }
-
-                        else if (operators.Peek() == "*" || operators.Peek() == "/")
-                        {
-                            int v1 = value.Pop();
-                            int v2 = value.Pop();
-                            string oper = operators.Pop();
-
-                            if (oper == "*")
-                            {
-                                operators.Pop();
-                                value.Push(v2 * v1);
-                            }
-                            else if (oper == "/")
-                            {
-                                try
-                                {
-                                    operators.Pop();
-                                    value.Push(v2 / v1);
-                                }
-                                catch (DivideByZeroException)
-                                {
-                                    Console.WriteLine("division by 0");
-                                }
-                            }
+                            value.Push(v2 - v1);
                         }
                     }
+
+                    if (operators.Peek() == "(")
+                    {
+                        operators.Pop();
+                    }
+                    
+                    if ((value.Count() > 1 && operators.Peek() == "*") || (value.Count() > 1 && operators.Peek() == "/"))
+                    {
+                        int v1 = value.Pop();
+                        int v2 = value.Pop();
+                        string oper = operators.Pop();
+
+                        if (oper == "*")
+                        {
+                            value.Push(v2 * v1);
+                        }
+                        else if (oper == "/")
+                        {
+                            try
+                            {
+                                value.Push(v2 / v1);
+                            }
+                            catch (DivideByZeroException)
+                            {
+                                Console.WriteLine("division by 0");
+                            }
+                        }
+                    } 
                 }
             }
             //When the last token has been processed
