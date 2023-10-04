@@ -45,7 +45,7 @@ namespace SpreadsheetUtilities
 
         // a counter variable that keeps track of the number of ordered         
         // pairs in the dependency graph
-        private int size = 0;
+        private int size;
 
         /// <summary>
         /// Creates an empty DependencyGraph.
@@ -57,6 +57,7 @@ namespace SpreadsheetUtilities
             //Dependents: arranges all dependent cells of the key dependee cell
             Dependees = new Dictionary<string, HashSet<string>>();
             Dependents = new Dictionary<string, HashSet<string>>();
+            size = 0;
         }
 
         /// <summary>
@@ -100,16 +101,10 @@ namespace SpreadsheetUtilities
             if (Dependents.ContainsKey(s))
             {
                 // if dependee cell 's' has dependents
-                if (Dependents[s].Count > 0)
-                {
+      
                     return true;
-                }
+             }
 
-                else
-                {
-                    return false;
-                }
-            }
             // if the Dependents dictionary doesn't contains 's'
             else
             {
@@ -126,15 +121,7 @@ namespace SpreadsheetUtilities
             // if the Dependees dictionary contains 's' 
             if (Dependees.ContainsKey(s))
             {
-                // if dependent cell 's' has dependents
-                if (Dependees[s].Count > 0)
-                {
                     return true;
-                }
-                else
-                {
-                    return false;
-                }
             }
             // if the Dependees dictionary doesn't contains 's'
             else
@@ -191,10 +178,10 @@ namespace SpreadsheetUtilities
             // if {'s' , 't'} pair does not have dependee-dependent relationship
             if (!(Dependees.ContainsKey(s) && Dependents.ContainsKey(t)))
             {
-                Dependees.Add(t, new HashSet<string>());
+                /*Dependees.Add(t, new HashSet<string>());
                 Dependees[t].Add(s);
                 Dependents.Add(s, new HashSet<string>());
-                Dependees[s].Add(t);
+                Dependees[s].Add(t);*/
                 // increase the size
                 size++;
             }
