@@ -1,7 +1,8 @@
-﻿// Skeleton implementation written by Sangeun An for CS 3500, September 2013.
+﻿// Skeleton implementation written by Joe Zachary for CS 3500, September 2013.
 // Version 1.1 (Fixed error in comment for RemoveDependency.)
-// Method Implementation by Basil Vetas
-// Date: September/30/2023
+// Version 1.2 - Daniel Kopta
+// (Clarified meaning of dependent and dependee.)
+// (Clarified names in solution/project structure.)
 
 using System;
 using System.Collections.Generic;
@@ -33,14 +34,14 @@ namespace SpreadsheetUtilities
     //     dependees("c") = {"a"}
     //     dependees("d") = {"b", "d"}
     /// </summary>
-    /// 
-
     public class DependencyGraph
     {
-        // will map a dependees to its set of dependents
+        // key: dependees
+        // value: dependents of the key cell
         private Dictionary<string, HashSet<string>> Dependees;
 
-        // will map a dependent to its set of dependees
+        // key: dependents
+        // value: dependees of the key cell
         private Dictionary<string, HashSet<string>> Dependents;
 
         // a counter variable that keeps track of the number of ordered         
@@ -52,9 +53,6 @@ namespace SpreadsheetUtilities
         /// </summary>
         public DependencyGraph()
         {
-            //key = string, value = HashSet of strings
-            //Dependees: arranges all dependee cells of the key dependent cell
-            //Dependents: arranges all dependent cells of the key dependee cell
             Dependees = new Dictionary<string, HashSet<string>>();
             Dependents = new Dictionary<string, HashSet<string>>();
             size = 0;
@@ -80,14 +78,12 @@ namespace SpreadsheetUtilities
         {
             get
             {
-                if (Dependees.ContainsKey(s))
+                if (Dependents.ContainsKey(s))
                 {
-                    return Dependees[s].Count;
+                    return Dependents[s].Count;
                 }
                 else
-                {
                     return 0;
-                }
             }
         }
 
@@ -97,15 +93,11 @@ namespace SpreadsheetUtilities
         /// </summary>
         public bool HasDependents(string s)
         {
-            // if the Dependents dictionary contains 's' 
-            if (Dependents.ContainsKey(s))
+            // if 's' is a key of Dependees library, 's'cell will have dependents
+            if (Dependees.ContainsKey(s))
             {
-                // if dependee cell 's' has dependents
-      
-                    return true;
-             }
-
-            // if the Dependents dictionary doesn't contains 's'
+                return true;
+            }
             else
             {
                 return false;
@@ -118,12 +110,11 @@ namespace SpreadsheetUtilities
         /// </summary>
         public bool HasDependees(string s)
         {
-            // if the Dependees dictionary contains 's' 
-            if (Dependees.ContainsKey(s))
+            // if 's' is a key of Dependents library, 's'cell will have dependees
+            if (Dependents.ContainsKey(s))
             {
-                    return true;
+                return true;
             }
-            // if the Dependees dictionary doesn't contains 's'
             else
             {
                 return false;
@@ -136,17 +127,14 @@ namespace SpreadsheetUtilities
         /// </summary>
         public IEnumerable<string> GetDependents(string s)
         {
-            if (Dependents.ContainsKey(s))
+            // if the Dependees dictionary contains 's' 
+            if (Dependees.ContainsKey(s))
             {
-                // return dependents as the IEnumerable variable                
-                return new HashSet<string>(Dependents[s]);
+                // return dependees as the IEnumerable variable          
+                return new HashSet<string>(Dependees[s]);
             }
-            else
-            {
-                // return empty HashSet
-                return new HashSet<string>();
-            }
-
+            else // otherwise
+                return new HashSet<string>();   // return and empty hash set
         }
 
         /// <summary>
@@ -154,16 +142,14 @@ namespace SpreadsheetUtilities
         /// </summary>
         public IEnumerable<string> GetDependees(string s)
         {
-            if (Dependees.ContainsKey(s))
+            // if the Dependents dictionary contains 's' 
+            if (Dependents.ContainsKey(s))
             {
-                // return dependees as the IEnumerable variable
-                return new HashSet<string>(Dependees[s]);
+                // return dependents as the IEnumerable variable
+                return new HashSet<string>(Dependents[s]);
             }
-            else
-            {
-                // return empty HashSet
-                return new HashSet<string>();
-            }
+            else // otherwise
+                return new HashSet<string>();   // return and empty hash set      
         }
 
 
@@ -176,46 +162,44 @@ namespace SpreadsheetUtilities
         {
             // s: dependee t: dependent
             // if {'s' , 't'} pair does not have dependee-dependent relationship
+            //increase size
             if (!(Dependees.ContainsKey(s) && Dependents.ContainsKey(t)))
             {
-                /*Dependees.Add(t, new HashSet<string>());
-                Dependees[t].Add(s);
-                Dependents.Add(s, new HashSet<string>());
-                Dependees[s].Add(t);*/
-                // increase the size
                 size++;
             }
 
             // if 's' is in Dependees dictionary ; is already dependee of some cells
+            // add 't' to the value HashSet(dependents) of 's'
             if (Dependees.ContainsKey(s))
             {
-                // add 't' to the value HashSet of 's'
                 Dependees[s].Add(t);
             }
+
             // else if 's' is not in Dependees dictionary
+            // make a new HashSet matches with 's'
             else
             {
-                // make a new HashSet matches with 's'
-                HashSet<string> addedDependents = new HashSet<string>();
-                addedDependents.Add(t);
-                Dependees.Add(s, addedDependents);
+                HashSet<string> dependents = new HashSet<string>();
+                dependents.Add(t);
+                Dependees.Add(s, dependents);
             }
 
-            // if 't' is in Dependents dictionary ; is already depenent of some cells
+            // if 's' is in Dependents dictionary ; is already dependent of some cells
+            // add 't' to the value HashSet(dependees) of 's'
             if (Dependents.ContainsKey(t))
             {
-                // add 's' to the value HashSet of 't'
                 Dependents[t].Add(s);
             }
-            // else if 't' is not in Dependents dictionary
+
+            // else if 's' is not in Dependents dictionary
+            // make a new HashSet matches with 's'
             else
             {
-                // make a new HashSet matches with 't'
-                HashSet<string> AddedDependees = new HashSet<string>();
-                AddedDependees.Add(s);
-                Dependents.Add(t, AddedDependees);
+                HashSet<string> dependees = new HashSet<string>();
+                dependees.Add(s);
+                Dependents.Add(t, dependees);
             }
-        }
+        } 
 
 
         /// <summary>
@@ -226,32 +210,35 @@ namespace SpreadsheetUtilities
         public void RemoveDependency(string s, string t)
         {
             // if {'s' , 't'} pair has dependee-dependent relationship
+            //decrease the size
             if (Dependees.ContainsKey(s) && Dependents.ContainsKey(t))
             {
-                //decrease the size
                 size--;
             }
 
             // if the dependees dictionary contains 's' 
+            // then just remove 't' from the value HashSet of 's'
             if (Dependees.ContainsKey(s))
             {
-                // then just remove 't' from the value HashSet of 's'
                 Dependees[s].Remove(t);
                 if (Dependees[s].Count == 0)
+                {
                     Dependees.Remove(s);
+                }
             }
 
             // if the dependents dictionary contains 't'
+            // then just add 's' t the value HashSet of 't'
             if (Dependents.ContainsKey(t))
             {
-                // then just add 's' t the value HashSet of 't'
                 Dependents[t].Remove(s);
                 if (Dependents[t].Count == 0)
+                {
                     Dependents.Remove(t);
+                }
             }
 
-        }
-
+        } 
 
         /// <summary>
         /// Removes all existing ordered pairs of the form (s,r).  Then, for each
@@ -283,13 +270,16 @@ namespace SpreadsheetUtilities
 
             // remove 'r' which was a dependee of 's'
             foreach (string r in oldDependees)
-                RemoveDependency(r, s); // remove the ordered pair           
+                RemoveDependency(r, s);
 
             // add 't' as new dependent of 's'
             foreach (string t in newDependees)
                 AddDependency(t, s);
+
         }
 
     }
 
 }
+
+
