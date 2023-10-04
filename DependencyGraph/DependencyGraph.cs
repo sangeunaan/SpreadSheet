@@ -4,6 +4,35 @@
 // (Clarified meaning of dependent and dependee.)
 // (Clarified names in solution/project structure.)
 
+/// <summary> /// <summary> 
+/// Author:    Sangeun An
+/// Partner:   None 
+/// Date:      10/4/2023
+/// Course:    CS 3500, University of Utah, School of Computing 
+/// Copyright: CS 3500 and Sangeun An - This work may not be copied for use in Academic Coursework. 
+/// 
+/// I, Sangeun An, certify that I wrote this code from scratch and did not copy it in part or whole from  
+/// another source.  All references used in the completion of the assignment are cited in my README file. 
+/// 
+/// File Contents 
+/// 
+///    [This is the library to define the dependency between cells and add or delete them.] 
+///    
+/// </summary>
+
+/// <summary>
+///   Dependency Graph deals with the dependency relationship between cells.
+/// Dependee cells should be already evaluated to evaluate a dependent cell.
+/// This project implements the dependency using two dictionary data structures, dependents and dependees, which have hash tables as the value.
+/// The methods will help adding and removing the relationships of the dependency graph.
+/// 
+/// </summary>
+/// <param name="s"> s represents the key of the libraries.
+/// <param name="t"> t represents the key of the libraries.
+/// <param name="size"> size indicates the number of the relationships
+/// <returns> The function will return the dependency graph represented by library data structure. </returns>
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

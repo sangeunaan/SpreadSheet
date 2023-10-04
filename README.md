@@ -15,7 +15,7 @@ Copyright:  CS 3500 and [Sangeun An] - This work may not be copied for use in Ac
 The Spreadsheet program is currently capable of 
 1) evaluating the mathematical expression written in string datatype.
 2) adding or deleting the dependency relationship between cells, which decides the order and the priority of calculations.
-Future extensions are executing the same function with the spreadsheet.
+Future extensions are executing the same function with the spreadsheet with appropriate graphics.
 
 # Time Expenditures:
 
