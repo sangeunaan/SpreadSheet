@@ -62,7 +62,7 @@ namespace SpreadsheetUtilities
         /// <summary>
         /// The number of ordered pairs in the DependencyGraph.
         /// </summary>
-        public int Size 
+        public int Size
         {
             get { return size; }
         }
@@ -87,7 +87,7 @@ namespace SpreadsheetUtilities
                 {
                     return 0;
                 }
-            } 
+            }
         }
 
 
@@ -140,7 +140,7 @@ namespace SpreadsheetUtilities
             else
             {
                 return false;
-            } 
+            }
         }
 
 
@@ -148,11 +148,11 @@ namespace SpreadsheetUtilities
         /// Enumerates dependents(s).
         /// </summary>
         public IEnumerable<string> GetDependents(string s)
-        {            
+        {
             if (Dependents.ContainsKey(s))
             {
                 // return dependents as the IEnumerable variable                
-                return new HashSet<string>(Dependents[s]); 
+                return new HashSet<string>(Dependents[s]);
             }
             else
             {
@@ -170,12 +170,12 @@ namespace SpreadsheetUtilities
             if (Dependees.ContainsKey(s))
             {
                 // return dependees as the IEnumerable variable
-                return new HashSet<string>(Dependees[s]); 
+                return new HashSet<string>(Dependees[s]);
             }
             else
             {
                 // return empty HashSet
-                return new HashSet<string>(); 
+                return new HashSet<string>();
             }
         }
 
@@ -196,7 +196,7 @@ namespace SpreadsheetUtilities
                 Dependents.Add(s, new HashSet<string>());
                 Dependees[s].Add(t);
                 // increase the size
-                size++; 
+                size++;
             }
 
             // if 's' is in Dependees dictionary ; is already dependee of some cells
@@ -277,7 +277,7 @@ namespace SpreadsheetUtilities
 
             // remove 'r' which was a dependent of 's'
             foreach (string r in oldDependents)
-                RemoveDependency(s, r);           
+                RemoveDependency(s, r);
 
             // add 't' as new dependent of 's'
             foreach (string t in newDependents)
@@ -303,7 +303,6 @@ namespace SpreadsheetUtilities
                 AddDependency(t, s);
         }
 
-    } 
+    }
 
-} 
-
+}
