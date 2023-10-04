@@ -1,30 +1,24 @@
 ```
-Author: Sangeun An
+Author:    [Sangeun An]
 Partner:    None
-Date:       9-13-2022
-Course:     CS 3500, ECE
-GitHub ID:  sangeunaan
-Repo:       https://github.com/Utah-School-of-Computing-de-St-Germain
+Date:       [09/14/2023]
+Course:     CS 3500,  UAC,ECE
+GitHub ID:  [ID]
+Repo:       https://github.com/Fall-2023-CS3500-Class/spreadsheet-[sangeunaan]
 Commit #:   1b10211fa6b7e5ed43c8f81463475c7ab39bded9
-Solution:   Spreadsheet
-Copyright:  CS 3500 and Sangeun An - This work may not be copied for use in Academic Coursework.
+Project:    Formula Evaluator
+Copyright:  CS 3500 and [Your Name(s)] - This work may not be copied for use in Academic Coursework.
 ```
-
-# Overview of the Spreadsheet functionality
-
-The Spreadsheet program is currently capable of calculating the summation, subtraction, multiplication, and division of an expression written in string datatype.
-Future extensions will be the form of the spreadsheet
-
-# Time Expenditures:
-
-    1. Assignment One:   Predicted Hours:          10        Actual Hours:       30
-
 
 # Comments to Evaluators:
 
 Have some problem on exception handlings. It works well in debugger but gradescope can't read it.
 Have some complication on dealing with parenthesis
 
+# Assignment Specific Topics
+
+Have some problem on exception handlings. It works well in debugger but gradescope can't read it.
+Have some complication on dealing with parenthesis
 
 # Consulted Peers:
 
