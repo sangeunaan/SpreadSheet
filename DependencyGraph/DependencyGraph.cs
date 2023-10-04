@@ -27,9 +27,9 @@
 /// The methods will help adding and removing the relationships of the dependency graph.
 /// 
 /// </summary>
-/// <param name="s"> s represents the key of the libraries.
-/// <param name="t"> t represents the key of the libraries.
-/// <param name="size"> size indicates the number of the relationships
+/// <param //name="s"> s represents the key of the libraries.
+/// <param //name="t"> t represents the key of the libraries.
+/// <param //name="size"> size indicates the number of the relationships
 /// <returns> The function will return the dependency graph represented by library data structure. </returns>
 
 
