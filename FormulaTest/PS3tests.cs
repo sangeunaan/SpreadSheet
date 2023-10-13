@@ -23,6 +23,13 @@ namespace EvaluatorTest
         }
 
         [TestMethod()]
+        public void TestEqualsDouble()
+        {
+            Assert.AreEqual(1.5, Evaluator.Evaluate("1.5", s => 0));
+        }
+
+
+        [TestMethod()]
         public void TestSingleVariable()
         {
             Assert.AreEqual(13.0, Evaluator.Evaluate("X5", s=>13));
@@ -136,9 +143,13 @@ namespace EvaluatorTest
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestExtraParentheses()
+        public void TestExtraRightParentheses()
         {
             Evaluator.Evaluate("2+5*7)", s => 0);
+        }
+        public void TestExtraLeftParentheses()
+        {
+            Evaluator.Evaluate("2+(5*7", s => 0);
         }
 
         [TestMethod()]

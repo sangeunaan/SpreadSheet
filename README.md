@@ -16,8 +16,10 @@ The Spreadsheet program is currently capable of
 1) evaluating the mathematical expression written in string datatype.
 2) adding or deleting the dependency relationship between cells, which decides the order and the priority of calculations.
 Future extensions are executing the same function with the spreadsheet with appropriate graphics.
+3) assign and evaluate the value of variable parameters and catches the error which is occured by the invalid format expression.
 
 # Time Expenditures:
 
     1. Assignment One:   Predicted Hours:          10        Actual Hours:       30
     2. Assignment Two:   Predicted Hours:           8        Actual Hours:       10
+    3. Assignment Three: Predicted Hours:           8        Actual ahours:      10

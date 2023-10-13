@@ -115,49 +115,45 @@ namespace SpreadsheetUtilities
                 {
                     throw new FormulaFormatException("invalid expression");
                 }
-                //then we can foreach over them
-                int openParen = 0;
-                int closeParen = 0;
+
+                int leftParen = 0;
+                int rightParen = 0;
                 for (int i = 0; i < tokenFormula.Length; i++)
                 {
-                    //is it an op?
+                    //if the token is an operator
                     if (tokenFormula[i].IsOperator())
                     {
-                        //what is the next thing
-                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsDouble() || tokenFormula[i + 1].IsVar() || tokenFormula[i + 1] == "("))
+                        //the next token must be a number or variable
+                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsDouble() || tokenFormula[i + 1].IsVar() ))
                         {
                             throw new FormulaFormatException("error: unexpected character after operator " + tokenFormula[i]);
                         }
                     }
-                    //is it an open paren?
+                    //if the token is a left parenthesis,
                     if (tokenFormula[i] == "(")
                     {
-                        openParen++;
-                        //what is the next thing? if it's wrong, we need to throw an exception
-                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsDouble()
-                            || tokenFormula[i + 1] == ")"
-                            || tokenFormula[i + 1].IsVar()))
+                        leftParen++;
+                        //the next token must be a number or variable
+                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsDouble() || tokenFormula[i + 1].IsVar()))
                         {
                             throw new FormulaFormatException("error: unexpected character after (");
                         }
                     }
-                    //is it a close paren?
+                    //if the token is a right parenthesis
                     if (tokenFormula[i] == ")")
                     {
-                        closeParen++;
-                        //what is the next thing? if it's wrong, we need to throw an exception
-                        if (i <= tokenFormula.Length - 2 &&
-                            !(tokenFormula[i + 1].IsOperator() || tokenFormula[i + 1] == ")"))
+                        rightParen++;
+                        //the next token must be an operator or a right parenthesis
+                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsOperator() || tokenFormula[i + 1] == ")"))
                         {
                             throw new FormulaFormatException("error: unexpected character after )");
                         }
                     }
-                    //is it a var or double
+                    //if the token is a variable
                     if (tokenFormula[i].IsVar())
                     {
-                        //what is the next thing
-                        if (i <= tokenFormula.Length - 2 &&
-                            !(tokenFormula[i + 1].IsOperator() || tokenFormula[i + 1] == ")"))
+                        //the next token must be an operator or a right parenthesis
+                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsOperator() || tokenFormula[i + 1] == ")"))
                         {
                             throw new FormulaFormatException("error: unexpected character after var " + tokenFormula[i]);
                         }
@@ -169,34 +165,29 @@ namespace SpreadsheetUtilities
                                 throw new FormulaFormatException("error: invalid normalized variable.");
                             }
                         }
-
-
-
                     }
+                    //if the token is a number
                     if (tokenFormula[i].IsDouble())
                     {
-                        //what is the next thing
-                        if (i <= tokenFormula.Length - 2 &&
-                            !(tokenFormula[i + 1].IsOperator() || tokenFormula[i + 1] == ")"))
+                        //the next token must be an operator or a right parenthesis
+                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsOperator() || tokenFormula[i + 1] == ")"))
                         {
                             throw new FormulaFormatException("error: unexpected character after value " + tokenFormula[i]);
                         }
 
                     }
-                    //do our open/close parens match?
-
-
-                }//end for loop
-                if (closeParen != openParen)
+                }
+                //the number of the left parenthesises and the right parenthesises should be same
+                if (rightParen != leftParen)
                 {
                     throw new FormulaFormatException("error: open and close parentheses do not match");
                 } 
                 pieces = new List<string>(tokenFormula);
 
             }
+            //empty expression case
             else
             {
-                //empty string
                 throw new FormulaFormatException("error: empty input");
             }
         }

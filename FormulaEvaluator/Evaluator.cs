@@ -76,12 +76,6 @@ namespace FormulaEvaluator
                 //if we had something with chars or symbols in it, we end up here
                 else
                 {
-
-                    // ----------------catch variables--------------------\\
-                    //treating substrings as a 2d array
-                    //Regex varChecker = new Regex("/^m([0-9]*)$/");
-                    //varChecker.
-                    //	if first char is a letter, proceed with checking 
                     //Char.IsLetter(substrings[i][0]) || substrings[i][0].Equals("_")
                     if (Regex.IsMatch(substrings[i], @"[a-zA-Z]+\d+"))
                     {
