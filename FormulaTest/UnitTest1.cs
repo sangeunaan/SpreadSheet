@@ -19,21 +19,19 @@ namespace EvaluatorTest
         [TestMethod()]
         public void TestSingleNumber()
         {
-            Formula test = new Formula("5");
-            object s = 
-            Assert.AreEqual(5, Evaluator.Evaluate("5", s => 0));
+            Assert.AreEqual(5, Evaluator.Evaluate("5", s=>0));
         }
 
         [TestMethod()]
         public void TestSingleVariable()
         {
-            Assert.AreEqual(13, Evaluator.Evaluate("X5", s => 13));
+            Assert.AreEqual(13.0, Evaluator.Evaluate("X5", s=>13));
         }
 
         [TestMethod()]
         public void TestAddition()
         {
-            Assert.AreEqual(8, Evaluator.Evaluate("5+3", s => 0));
+            Assert.AreEqual(8,Evaluator.Evaluate("5+3", s => 0));
         }
 
         [TestMethod()]
