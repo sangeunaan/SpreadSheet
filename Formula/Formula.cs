@@ -123,8 +123,8 @@ namespace SpreadsheetUtilities
                     //if the token is an operator
                     if (tokenFormula[i].IsOperator())
                     {
-                        //the next token must be a number or variable
-                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsDouble() || tokenFormula[i + 1].IsVar() ))
+                        //the next token must be a number or variable or a left parenthesis
+                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsDouble() || tokenFormula[i + 1].IsVar() || tokenFormula[i + 1].Equals("(")))
                         {
                             throw new FormulaFormatException("error: unexpected character after operator " + tokenFormula[i]);
                         }
@@ -134,7 +134,7 @@ namespace SpreadsheetUtilities
                     {
                         leftParen++;
                         //the next token must be a number or variable
-                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsDouble() || tokenFormula[i + 1].IsVar()))
+                        if (i <= tokenFormula.Length - 2 && !(tokenFormula[i + 1].IsDouble() || tokenFormula[i + 1].IsVar()) || tokenFormula[i + 1] == ")")
                         {
                             throw new FormulaFormatException("error: unexpected character after (");
                         }
