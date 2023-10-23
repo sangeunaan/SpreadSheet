@@ -206,7 +206,7 @@ namespace SS
             if (ReferenceEquals(name, null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
-            // temp variable to hold old dependents 
+            // temp variable to hold old dependent.
             IEnumerable<String> old_dependees = dg.GetDependees(name);
 
             // replace the dependents of 'name' in the dependency graph with the variables in formula
