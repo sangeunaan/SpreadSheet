@@ -18,9 +18,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyGraphTest", "Depe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormulaTests", "EvaluatorTest\FormulaTests.csproj", "{12DB3EB9-3FDD-4C2A-B2AF-B0F6226A3735}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formula", "Formula\Formula.csproj", "{AED71B29-5951-4568-A9A8-CAED894678BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formula", "Formula\Formula.csproj", "{AED71B29-5951-4568-A9A8-CAED894678BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormulaTest", "FormulaTest\FormulaTest.csproj", "{E4E6A385-A5E4-4876-B3F3-CC8B850C9381}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormulaTest", "FormulaTest\FormulaTest.csproj", "{E4E6A385-A5E4-4876-B3F3-CC8B850C9381}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadsheet", "Spreadsheet\Spreadsheet.csproj", "{EC3AE656-8524-43C3-8E68-4D5D71B652E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,10 @@ Global
 		{E4E6A385-A5E4-4876-B3F3-CC8B850C9381}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4E6A385-A5E4-4876-B3F3-CC8B850C9381}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4E6A385-A5E4-4876-B3F3-CC8B850C9381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC3AE656-8524-43C3-8E68-4D5D71B652E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC3AE656-8524-43C3-8E68-4D5D71B652E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC3AE656-8524-43C3-8E68-4D5D71B652E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC3AE656-8524-43C3-8E68-4D5D71B652E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
