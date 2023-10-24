@@ -23,7 +23,6 @@ namespace SS
         /// </summary>
         private class Cell
         {
-            // only one of these will be initialized
             public Object contents { get; private set; }
             public Object value { get; private set; }
 
