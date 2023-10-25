@@ -162,16 +162,16 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
-        public override ISet<String> SetCellContents(String name, String str)
+        public override ISet<String> SetCellContents(String name, String text)
         {
-            if (str == null)
+            if (text == null)
                 throw new ArgumentNullException();
 
             if ((name == null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
 
-            Cell cell = new Cell(str);
+            Cell cell = new Cell(text);
             if (cells.ContainsKey(name))    // if it already contains that key
                 cells[name] = cell;         // replace the key with the new value
             else
