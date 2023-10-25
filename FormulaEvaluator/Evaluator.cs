@@ -191,7 +191,7 @@ namespace FormulaEvaluator
                 case "/":
                     if (right == 0)
                     {
-                        throw new DivideByZeroException("error: divide by zero");
+                        Console.WriteLine("cannot divide by zero");
                     }
                     result = left / right;
                     break;

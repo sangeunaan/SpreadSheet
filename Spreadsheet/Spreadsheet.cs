@@ -115,10 +115,14 @@ namespace SS
         }
 
         /// <summary>
-        /// setter for cellContents
+        /// If name is null or invalid, throws an InvalidNameException.
         /// 
+        /// Otherwise, the contents of the named cell becomes number.  The method returns a
+        /// set consisting of name plus the names of all other cells whose value depends, 
+        /// directly or indirectly, on the named cell.
         /// 
-        /// 
+        /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
+        /// set {A1, B1, C1} is returned.
         /// </summary>
         public override ISet<String> SetCellContents(String name, double number)
         {
@@ -154,13 +158,13 @@ namespace SS
         /// </summary>
         public override ISet<String> SetCellContents(String name, String text)
         {
-            if (ReferenceEquals(text, null))
+            if (text == null)
                 throw new ArgumentNullException();
 
-            if (ReferenceEquals(name, null) || !(IsValidName(name)))
+            if ((name == null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
-            // Create a new cell
+
             Cell cell = new Cell(text);
             if (cells.ContainsKey(name))    // if it already contains that key
                 cells[name] = cell;         // replace the key with the new value
@@ -195,10 +199,10 @@ namespace SS
         /// </summary>
         public override ISet<String> SetCellContents(String name, Formula formula)
         {
-            if (ReferenceEquals(formula, null))
+            if (formula == null)
                 throw new ArgumentNullException();
 
-            if (ReferenceEquals(name, null) || !(IsValidName(name)))
+            if ((name == null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
             // temp variable to hold old dependent.
