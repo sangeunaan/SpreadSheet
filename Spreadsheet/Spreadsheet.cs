@@ -30,7 +30,7 @@ namespace SS
             string value_type;
 
             /// <summary>
-            /// Constructor for strings
+            /// Constructor for string contents cell
             /// </summary>
             /// <param name="name"></param>
             public Cell(string name)
@@ -42,7 +42,7 @@ namespace SS
             }
 
             /// <summary>
-            /// Constructor for doubles
+            /// Constructor for double contents cell
             /// </summary>
             /// <param name="name"></param>
             public Cell(double name)
@@ -54,7 +54,7 @@ namespace SS
             }
 
             /// <summary>
-            /// Constructor for Formulas: complex expressions containing at least one operator
+            /// Constructor for Formula contents cell: complex expressions containing at least one operator
             /// </summary>
             /// <param name="name"></param>
             public Cell(Formula name)
@@ -69,8 +69,8 @@ namespace SS
 
 
         // Use dictionary to assign cells a cell name and a value(expression)
-        // Key: cell name
-        // Value: cell value
+        // Key: cell name(string)
+        // Value: cell value(Cell)
         Dictionary<string, Cell> cells;
 
         // dependency graph for cells
@@ -91,7 +91,7 @@ namespace SS
         /// </summary>
         public override IEnumerable<String> GetNamesOfAllNonemptyCells()
         {
-            // cell.Keys should contain the names of all non-empty cells
+            // Name of the Cells: key of cells dictionary
             return cells.Keys;
         }
 
@@ -101,8 +101,12 @@ namespace SS
         /// Otherwise, returns the contents (as opposed to the value) of the named cell.  The return
         /// value should be either a string, a double, or a Formula.
         /// </summary>
+        
         public override object GetCellContents(String name)
         {
+            //Getter(return) for the Cell contents
+            //variable "name": name(key) of the cell
+
             if (name == null || !(IsValidName(name)))
                 throw new InvalidNameException();
 
@@ -126,6 +130,8 @@ namespace SS
         /// </summary>
         public override ISet<String> SetCellContents(String name, double number)
         {
+            //Setter for the Cell contents
+
             if (ReferenceEquals(name, null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
@@ -156,16 +162,16 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
-        public override ISet<String> SetCellContents(String name, String text)
+        public override ISet<String> SetCellContents(String name, String str)
         {
-            if (text == null)
+            if (str == null)
                 throw new ArgumentNullException();
 
             if ((name == null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
 
-            Cell cell = new Cell(text);
+            Cell cell = new Cell(str);
             if (cells.ContainsKey(name))    // if it already contains that key
                 cells[name] = cell;         // replace the key with the new value
             else
