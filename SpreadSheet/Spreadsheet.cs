@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -128,7 +128,7 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
-        public override ISet<String> SetCellContents(String name, double number)
+        public override IList<String> SetCellContents(String name, double number)
         {
             //Setter for the Cell contents
 
@@ -143,10 +143,10 @@ namespace SS
                 cells.Add(name, cell);      // otherwise add a new key for that value
 
             // replace the dependents of 'name' in the dependency graph with an empty hash set
-            dg.ReplaceDependees(name, new HashSet<String>());
+            dg.ReplaceDependees(name, new List<String>());
 
             // recalculate at end
-            HashSet<String> all_dependees = new HashSet<String>(GetCellsToRecalculate(name));
+            List<String> all_dependees = new List<String>(GetCellsToRecalculate(name));
             return all_dependees;
         }
 
@@ -162,16 +162,17 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
-        public override ISet<String> SetCellContents(String name, String text)
+        public override IList<String> SetCellContents(String name, String str)
         {
-            if (text == null)
+            if (str == null)
                 throw new ArgumentNullException();
 
             if ((name == null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
 
-            Cell cell = new Cell(text);
+            Cell cell = new Cell(str);
+
             if (cells.ContainsKey(name))    // if it already contains that key
                 cells[name] = cell;         // replace the key with the new value
             else
@@ -181,10 +182,10 @@ namespace SS
                 cells.Remove(name);
 
             // replace the dependents of 'name' in the dependency graph with an empty hash set
-            dg.ReplaceDependees(name, new HashSet<String>());
+            dg.ReplaceDependees(name, new List<String>());
 
             // recalculate at end
-            HashSet<String> all_dependees = new HashSet<String>(GetCellsToRecalculate(name));
+            List<String> all_dependees = new List<String>(GetCellsToRecalculate(name));
             return all_dependees;
         }
 
@@ -203,7 +204,7 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
-        public override ISet<String> SetCellContents(String name, Formula formula)
+        public override IList<String> SetCellContents(String name, Formula formula)
         {
             if (formula == null)
                 throw new ArgumentNullException();
@@ -220,7 +221,7 @@ namespace SS
             try // check if the new depdendency graph creates a circular reference
             {
                 // if there is no exception
-                HashSet<String> all_dependees = new HashSet<String>(GetCellsToRecalculate(name));
+                List<String> all_dependees = new List<String>(GetCellsToRecalculate(name));
                 // create a new cell
                 Cell cell = new Cell(formula);
                 if (cells.ContainsKey(name))    // if it already contains that key
@@ -264,7 +265,7 @@ namespace SS
                 throw new InvalidNameException();
 
             // GetDependents returns a HashSet ensuring there won't be duplicates
-            return dg.GetDependents(name); // changed this from GetDependees to GetDependents and fixed most of my tests  
+            return dg.GetDependents(name); 
         }
 
         /// <summary>
