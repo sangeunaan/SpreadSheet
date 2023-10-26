@@ -17,7 +17,7 @@ The Spreadsheet program is currently capable of
 2) adding or deleting the dependency relationship between cells, which decides the order and the priority of calculations.
 Future extensions are executing the same function with the spreadsheet with appropriate graphics.
 3) assign and evaluate the value of variable parameters and catches the error which is occured by the invalid format expression.
-4) 
+4) implement the cells in spreadsheet and execute calculation of the value of cells base on the dependency of the cells.
 
 # Time Expenditures:
 

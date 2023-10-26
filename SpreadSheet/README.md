@@ -10,17 +10,16 @@ Project:    Formula
 Copyright:  CS 3500 and [Sangeun An] - This work may not be copied for use in Academic Coursework.
 ```
 
-# Comments to Formula:
+# Comments to spreadsheet:
 
-The goal of this project is refactoring the formula evaluator from Assignment 1.
-This class library provide the programs to handle various exceptions about the inappropriate expressions, which is well known as the syntax error.
-The newly added function in this project is to determine and assign the value of a variable using delegates.
-
+Outcome of this project will be the combination of dependency graph and formula evaluator.
+Every abstract methods in abstract classes will get the assigned value and dependency of each cell,
+then execute the calculation between the values base on their dependency.
 
 # Assignment Specific Topics:
 
-It was confusing to load the Evaluator function from FormulaEvaluator library to this project, due to the parameters.
-Calling the function from the reference library instead of modifying the method was the challenging work.
+It was confusing to set the variables for the methods from reference classes or parent classes in the new class, especially when its datatype is user defined class.
+It was confusing to implement the circular exception in tester code.
 
 # Consulted Peers:
 
@@ -28,5 +27,5 @@ No Peer
 
 # References:
 
-    1. Lambda expressions and anonymous functions - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions
+    1. C# IList Interface- https://learn.microsoft.com/ko-kr/dotnet/api/system.collections.ilist?view=net-7.0
     2. C# Delegates-https://www.tutorialsteacher.com/csharp/csharp-delegates
