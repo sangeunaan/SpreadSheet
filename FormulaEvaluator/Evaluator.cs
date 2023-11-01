@@ -153,28 +153,37 @@ namespace FormulaEvaluator
 
 
         }
-        private static double Math(double left, string op, double right)
+        private static double Math(double left, string oprt, double right)
         {
             double result = 0;
-            switch (op)
+
+            if (oprt == "*")
             {
-                case "*":
-                    result = left * right;
-                    break;
-                case "/":
-                    if (right == 0)
-                    {
-                        Console.WriteLine("cannot divide by zero");
-                    }
-                    result = left / right;
-                    break;
-                case "+":
-                    result = left + right;
-                    break;
-                case "-":
-                    result = left - right;
-                    break;
+                result = left * right;
             }
+
+            else if (oprt == "/")
+            {
+                try
+                {
+                    result = left / right;
+                }
+                catch(DivideByZeroException)
+                {
+                    Console.WriteLine("You cannot divide by zero!");
+                }
+            }  
+
+            else if (oprt == "+")
+            {
+                result = left + right;
+            }
+
+            else if (oprt == "-")
+            {
+                result = left - right;
+            }
+
             return result;
         }
     }

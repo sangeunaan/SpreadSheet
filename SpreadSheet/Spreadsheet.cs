@@ -280,6 +280,6 @@ namespace SS
             else return false;
         }
 
-    } // END Spreadsheet class
+    } 
 
-} // END SS Namespace
+}
