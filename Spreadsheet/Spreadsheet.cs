@@ -68,7 +68,7 @@ namespace SS
         }
 
 
-        // Use dictionary to assign cells a cell name and a value(expression)
+        // Global variable cells: use dictionary to assign cells a cell name and a value(expression)
         // Key: cell name(string)
         // Value: cell value(Cell)
         Dictionary<string, Cell> cells;
@@ -132,20 +132,21 @@ namespace SS
         {
             //Setter for the Cell contents
 
-            if (ReferenceEquals(name, null) || !(IsValidName(name)))
+            if ((name == null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
-            // Create a new cell
             Cell cell = new Cell(number);
-            if (cells.ContainsKey(name))    // if it already contains that key
-                cells[name] = cell;         // replace the key with the new value
+
+            //if the cell named "name" already exists, assign the value "cell" to the cell
+            if (cells.ContainsKey(name))    
+                cells[name] = cell;
+            // if the contents is an empty string, remove the cell
             else
-                cells.Add(name, cell);      // otherwise add a new key for that value
+                cells.Add(name, cell);      
 
-            // replace the dependents of 'name' in the dependency graph with an empty hash set
+            // replace the dependents of 'name' in the dependency graph with an empty list
             dg.ReplaceDependees(name, new List<String>());
-
-            // recalculate at end
+            
             List<String> all_dependees = new List<String>(GetCellsToRecalculate(name));
             return all_dependees;
         }
@@ -162,29 +163,30 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
-        public override IList<String> SetCellContents(String name, String str)
+        public override IList<String> SetCellContents(String name, String text)
         {
-            if (str == null)
+            if (text == null)
                 throw new ArgumentNullException();
 
             if ((name == null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
 
-            Cell cell = new Cell(str);
+            Cell cell = new Cell(text);
 
-            if (cells.ContainsKey(name))    // if it already contains that key
-                cells[name] = cell;         // replace the key with the new value
+            //if the cell named "name" already exists, assign the value "cell" to the cell
+            if (cells.ContainsKey(name))    
+                cells[name] = cell;
+            //if it doesn't exist, add the new (key,value) set 
             else
-                cells.Add(name, cell);      // otherwise add a new key for that value
-
-            if (cells[name].contents == "") // if the contents is an empty string, we don't want it in the dictionary
+                cells.Add(name, cell);
+            // if the contents is an empty string, remove the cell
+            if (cells[name].contents == "")
                 cells.Remove(name);
 
-            // replace the dependents of 'name' in the dependency graph with an empty hash set
+            // replace the dependents of 'name' in the dependency graph with an empty list
             dg.ReplaceDependees(name, new List<String>());
 
-            // recalculate at end
             List<String> all_dependees = new List<String>(GetCellsToRecalculate(name));
             return all_dependees;
         }
@@ -212,7 +214,6 @@ namespace SS
             if ((name == null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
-            // temp variable to hold old dependent.
             IEnumerable<String> old_dependees = dg.GetDependees(name);
 
             // replace the dependents of 'name' in the dependency graph with the variables in formula
@@ -258,13 +259,12 @@ namespace SS
         /// </summary>
         protected override IEnumerable<String> GetDirectDependents(String name)
         {
-            if (ReferenceEquals(name, null))
+            if (name == null)
                 throw new ArgumentNullException();
 
             if (!(IsValidName(name)))
                 throw new InvalidNameException();
 
-            // GetDependents returns a HashSet ensuring there won't be duplicates
             return dg.GetDependents(name); 
         }
 
@@ -280,6 +280,6 @@ namespace SS
             else return false;
         }
 
-    } // END Spreadsheet class
+    } 
 
-} // END SS Namespace
+}

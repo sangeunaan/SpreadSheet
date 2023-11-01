@@ -13,27 +13,8 @@ namespace FormulaEvaluator
     /// </summary>
     public static class Evaluator
     {
-        /// <summary>
-        /// converts vars to numbers
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
+
         public delegate double Lookup(string s);
-        /// <summary>
-        ///evaluates a given expression down to a single number
-        /// </summary>
-        /// <remarks>
-        ///		<para>variables should begin with a letter</para>
-        ///		<para></para>
-        ///		<para></para>
-        /// </remarks>
-        /// <exception cref="ArgumentException">Throws if division by zero occurs OR expression is missing open parantheses OR an entered variable is formatted incorrectly</exception>
-        /// <param name="exp">the expression given by the user</param>
-        /// <param name="variableEvaluator">function for putting integer values in place of variables</param>
-        /// <returns>Long. the result of the expression</returns>
-        /// <exception cref="ArgumentException">Thrown if  a variable can't be parsed
-        /// or the given formula isn't formatted correctly</exception>
-        /// <exception cref="DivideByZeroException"> thrown if division by zero oc curs</exception>
         public static double Evaluate(string expression, Func<string, double> variableEvaluator)
         {
             Stack<string> operators = new Stack<string>();
@@ -128,7 +109,7 @@ namespace FormulaEvaluator
                         //"Next, the top of the operator stack should be a (. Pop it."
                         if ((operators.Count == 0 || operators.Peek() != "("))
                         {
-                            throw new ArgumentException("missing open parantheses");
+                            throw new ArgumentException("no matching parenthesis");
                         }
                         else
                         {
@@ -172,14 +153,6 @@ namespace FormulaEvaluator
 
 
         }
-
-        /// <summary>
-        /// handy helper to do math as we go.
-        /// </summary>
-        /// <param name="left"> left operand</param>
-        /// <param name="op"> operator</param>
-        /// <param name="right"> right operand</param>
-        /// <returns> result of math operation</returns>
         private static double Math(double left, string op, double right)
         {
             double result = 0;
