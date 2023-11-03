@@ -121,7 +121,7 @@ namespace SS
         /// </summary>
         public override string GetSavedVersion(string filename)
         {
-            return filename;          
+            return "1.0";
         }
 
         // ADDED FOR PS5
@@ -148,70 +148,6 @@ namespace SS
         /// </summary> 
         public override void Save(string filename)
         {
-            // if the spreadsheet hasn't been changed, we don't need to save anything
-            //if (Changed == false)
- 
-            // the filename can't be null
-            if (filename == null)
-                throw new SpreadsheetReadWriteException("The filename cannot be null");
-
-            // the filename can't be empty
-            if (filename.Equals(""))
-                throw new SpreadsheetReadWriteException("The filename cannot be empty");
-
-            try
-            {
-                XmlWriterSettings settings = new XmlWriterSettings();
-                settings.Indent = true;
-
-                // for some reason more tests fail when I don't set indent = true
-                using (XmlWriter writer = XmlWriter.Create(filename, settings))
-                {
-                    writer.WriteStartDocument(); // start document
-                    writer.WriteStartElement("spreadsheet"); // open spreadsheet tag                
-                    writer.WriteAttributeString("version", null, Version);
-                    foreach (string cell in cells.Keys)
-                    {
-                        writer.WriteStartElement("cell");   // open cell tag                        
-                        writer.WriteElementString("name", cell);   // open name tag                                               
-
-                        string cell_contents; // will hold the contents of this cell
-                        // check the type of the contents of the cell
-                        if (cells[cell].contents is double)
-                        {   //  if the contents of this cell is a double
-                            //  save the contents as a double.ToString();                        
-                            cell_contents = cells[cell].contents.ToString();
-                        }
-                        else if (cells[cell].contents is Formula)
-                        {   //  if the contents of this cell is a Formula
-                            //  prepend "=" and save the contents as a Formula.ToString();
-                            cell_contents = "=" + cells[cell].contents.ToString();
-                        }
-                        else
-                        {   //  otherwise the contents of this cell is a string
-                            //  save the contents as the string;
-                            cell_contents = (string)cells[cell].contents;
-                        }
-
-                        writer.WriteElementString("contents", cell_contents);   // open contents tag                        
-                        writer.WriteEndElement(); // close cell tag
-                    }
-                    writer.WriteEndElement();               // close spreadsheet tag
-                    writer.WriteEndDocument(); // end document  
-
-                } // END Using
-            } // END try
-            catch (XmlException e)
-            {
-                throw new SpreadsheetReadWriteException(e.ToString());
-            }
-            catch (IOException e)
-            {
-                throw new SpreadsheetReadWriteException(e.ToString());
-            }
-
-            // after saving, set changed to false
-            Changed = false;
         }
 
         // ADDED FOR PS5
