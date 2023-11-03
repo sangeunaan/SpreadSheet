@@ -203,7 +203,7 @@ namespace SS
         ///     evaluated, followed by B1 re-evaluated, followed by C1 re-evaluated.
         ///   </para>
         /// </returns>
-        protected abstract IList<String> SetCellContents(String name, double number);
+        public abstract IList<String> SetCellContents(String name, double number);
 
         /// <summary>
         /// The contents of the named cell becomes the text.  
@@ -238,7 +238,7 @@ namespace SS
         ///     evaluated, followed by B1 re-evaluated, followed by C1 re-evaluated.
         ///   </para>
         /// </returns>
-        protected abstract IList<String> SetCellContents(String name, String text);
+        public abstract IList<String> SetCellContents(String name, String text);
 
         /// <summary>
         /// Set the contents of the named cell to the formula.  
@@ -279,7 +279,7 @@ namespace SS
         ///     evaluated, followed by B1 re-evaluated, followed by C1 re-evaluated.
         ///   </para>
         /// </returns>
-        protected abstract IList<String> SetCellContents(String name, Formula formula);
+        public abstract IList<String> SetCellContents(String name, Formula formula);
 
 
         /// <summary>
