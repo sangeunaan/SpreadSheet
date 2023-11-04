@@ -10,8 +10,6 @@ using System.Linq;
 
 namespace GradingTests
 {
-
-
     /// <summary>
     ///This is a test class for SpreadsheetTest and is intended
     ///to contain all SpreadsheetTest Unit Tests
