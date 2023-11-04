@@ -281,7 +281,7 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
-        public override IList<String> SetCellContents(String name, double number)
+        protected override IList<String> SetCellContents(String name, double number)
         {
             //Setter for the Cell contents
 
@@ -317,7 +317,7 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
-        public override IList<String> SetCellContents(String name, String text)
+        protected override IList<String> SetCellContents(String name, String text)
         {
             if (text == null)
                 throw new ArgumentNullException();
@@ -361,7 +361,7 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
-        public override IList<String> SetCellContents(String name, Formula formula)
+        protected override IList<String> SetCellContents(String name, Formula formula)
         {
             if (formula == null)
                 throw new ArgumentNullException();
