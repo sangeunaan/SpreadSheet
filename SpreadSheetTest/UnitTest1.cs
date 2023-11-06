@@ -6,13 +6,6 @@ using System.Collections.Generic;
 
 namespace SpreadsheetTests
 {
-    /// <summary>
-    /// Test class for PS5. NEED TO COPY OVER RELEVANT TESTS FROM PS4. I assume
-    /// that the implementation of PS4 used in Spreadsheet passes 100% of the grading tests for PS4,
-    /// which is true because I have made all necessary corrections to my PS4 assignment. 
-    /// </summary>
-    /// <author>Basil Vetas</author>
-    /// <date>10-6-2014</date>
     [TestClass]
     public class SpreadsheetTests
     {
@@ -153,6 +146,189 @@ namespace SpreadsheetTests
             }
             else return false;
 
+        }
+
+        ///<summary>
+        ///     Tests when we try to save a spreadsheet to a null filepath location
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod17()
+        {
+            Spreadsheet sheet = new Spreadsheet(s => true, s => s, "2.0");
+            sheet.SetContentsOfCell("D1", "1");
+            sheet.SetContentsOfCell("E1", "1");
+            sheet.SetContentsOfCell("F1", "3");
+            sheet.SetContentsOfCell("B1", "=D1 + E1");
+            sheet.SetContentsOfCell("C1", "=F1");
+            sheet.SetContentsOfCell("A1", "=B1 + C1");
+            sheet.Save(null);
+        }
+
+        ///<summary>
+        ///     Tests when we try to save a spreadsheet to an empty filepath location
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod18()
+        {
+            Spreadsheet sheet = new Spreadsheet(s => true, s => s, "2.0");
+            sheet.SetContentsOfCell("D1", "1");
+            sheet.SetContentsOfCell("E1", "1");
+            sheet.SetContentsOfCell("F1", "3");
+            sheet.SetContentsOfCell("B1", "=D1 + E1");
+            sheet.SetContentsOfCell("C1", "=F1");
+            sheet.SetContentsOfCell("A1", "=B1 + C1");
+            sheet.Save("");
+        }
+
+        /// <summary>
+        ///     Tests when we try to read a spreadsheet from a null filepath location
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod19()
+        {
+            Spreadsheet sheet1 = new Spreadsheet(s => true, s => s, "2.0");
+            sheet1.SetContentsOfCell("D1", "1");
+            sheet1.SetContentsOfCell("E1", "1");
+            sheet1.SetContentsOfCell("F1", "3");
+            sheet1.SetContentsOfCell("B1", "=D1 + E1");
+            sheet1.SetContentsOfCell("C1", "=F1");
+            sheet1.SetContentsOfCell("A1", "=B1 + C1");
+            sheet1.Save("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\spreadsheet-test-1.xml");
+            Spreadsheet sheet2 = new Spreadsheet();
+            string version = sheet2.GetSavedVersion(null);
+        }
+
+        /// <summary>
+        ///     Tests when we try to read a spreadsheet from an empty filepath location
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod20()
+        {
+            Spreadsheet sheet1 = new Spreadsheet(s => true, s => s, "2.0");
+            sheet1.SetContentsOfCell("D1", "1");
+            sheet1.SetContentsOfCell("E1", "1");
+            sheet1.SetContentsOfCell("F1", "3");
+            sheet1.SetContentsOfCell("B1", "=D1 + E1");
+            sheet1.SetContentsOfCell("C1", "=F1");
+            sheet1.SetContentsOfCell("A1", "=B1 + C1");
+            sheet1.Save("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\spreadsheet-test-1.xml");
+            Spreadsheet sheet2 = new Spreadsheet();
+            string version = sheet2.GetSavedVersion("");
+        }
+
+        /// <summary
+        ///     Tries to get the saved version of a file that doesn not exist
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod44()
+        {
+            Spreadsheet sheet2 = new Spreadsheet();
+            string version = sheet2.GetSavedVersion("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\this-file-does-not-exist.xml");
+        }
+
+        /// <summary
+        ///     Tries to get saved version when file startes with a <cell> tag
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod45()
+        {
+            Spreadsheet sheet2 = new Spreadsheet();
+            string version = sheet2.GetSavedVersion("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-form-1.xml");
+        }
+
+        /// <summary
+        ///     Tries to get saved version when file startes with a <name> tag
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod46()
+        {
+            Spreadsheet sheet2 = new Spreadsheet();
+            string version = sheet2.GetSavedVersion("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-form-2.xml");
+        }
+
+        /// <summary
+        ///     Tries to get saved version when file startes with a <contents> tag
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod47()
+        {
+            Spreadsheet sheet2 = new Spreadsheet();
+            string version = sheet2.GetSavedVersion("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-form-3.xml");
+        }
+
+        /// <summary>
+        ///     Tries to save a file to a folder rather than a file (bad path name)
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod48()
+        {
+            Spreadsheet sheet1 = new Spreadsheet(s => true, s => s, "2.0");
+            sheet1.SetContentsOfCell("D1", "1");
+            sheet1.SetContentsOfCell("E1", "1");
+            sheet1.SetContentsOfCell("F1", "3");
+            sheet1.SetContentsOfCell("B1", "=D1 + E1");
+            sheet1.SetContentsOfCell("C1", "=F1");
+            sheet1.SetContentsOfCell("A1", "=B1 + C1");
+            sheet1.Save("C:\\Users\\2002s\\source\\");
+        }
+
+        /// <summary>
+        ///     Tries to construct a new spreadsheet using a bad path name
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod49()
+        {
+            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\", s => true, s => s, "2.0");
+        }
+
+        /// <summary>
+        ///     Tries to construct a new spreadsheet using a bad path name
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod51()
+        {
+            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\versions-do-not-match.xml", s => true, s => s, "3.0");
+        }
+
+        /// <summary>
+        ///     Tries to construct a new spreadsheet using a bad path name
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidNameException))]
+        public void TestMethod52()
+        {
+            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-cell-name.xml", s => true, s => s, "2.0");
+        }
+
+        /// <summary>
+        ///     Tries to construct a new spreadsheet using a bad path name
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(SpreadsheetReadWriteException))]
+        public void TestMethod53()
+        {
+            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-cell-xml.xml", s => true, s => s, "2.0");
+        }
+
+        /// <summary>
+        ///     Tries to construct a new spreadsheet using a bad path name
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(CircularException))]
+        public void TestMethod54()
+        {
+            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\circular-dependency.xml", s => true, s => s, "2.0");
         }
 
         // --------- Non-Exception Tests ------------ //
@@ -505,6 +681,7 @@ namespace SpreadsheetTests
             sheet.SetContentsOfCell("4356", "42");
 
         }
+
         /*
         /// <summary>
         /// Tests null arg exception for GetDirectDependents
@@ -513,8 +690,8 @@ namespace SpreadsheetTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestMethod32()
         {
-            AbstractSpreadsheet accessor = new Spreadsheet();
-            accessor.GetDependents("GetDirectDependents", new Object[] { null });
+            PrivateObject accessor = new PrivateObject(new Spreadsheet());
+            accessor.Invoke("GetDirectDependents", new Object[] { null });
 
         }
 
@@ -525,7 +702,7 @@ namespace SpreadsheetTests
         [ExpectedException(typeof(InvalidNameException))]
         public void TestMethod33()
         {
-            Object accessor = new Spreadsheet();
+            PrivateObject accessor = new PrivateObject(new Spreadsheet());
             accessor.Invoke("GetDirectDependents", new Object[] { "4353" });
         }
         */
@@ -562,14 +739,14 @@ namespace SpreadsheetTests
 
         // --------- PS4 Non-Exception Tests ------------ //
 
-        /*
         /// <summary>
         /// Tests for GetDirectDependents
         /// </summary>
+        /*
         [TestMethod]
         public void TestMethod36()
         {
-            Object accessor = new Spreadsheet();
+            PrivateObject accessor = new PrivateObject(new Spreadsheet());
             accessor.Invoke("GetDirectDependents", new Object[] { "A1" });
 
         }
