@@ -11,7 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyGraph", "Dependen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{32943D5A-0839-44F4-BA37-97B72FEBB980}"
 	ProjectSection(SolutionItems) = preProject
+		Whiteboard\dependency_graph_whiteboard.jpeg = Whiteboard\dependency_graph_whiteboard.jpeg
+		Whiteboard\formula_whiteboard.jpeg = Whiteboard\formula_whiteboard.jpeg
 		README.md = README.md
+		Whiteboard\spreadsheet_whiteboard.jpeg = Whiteboard\spreadsheet_whiteboard.jpeg
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyGraphTest", "DependencyGraphTest\DependencyGraphTest.csproj", "{33A11C3A-5ABC-4BE1-A778-363BAFD54AD1}"
@@ -24,9 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormulaTest", "FormulaTest\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI", "GUI\GUI.csproj", "{529D6EAB-8227-4AFC-A226-D29961811B58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadSheet", "SpreadSheet\SpreadSheet.csproj", "{33F620B5-C0D1-4C1F-9911-B01F42D1CE80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadSheet", "SpreadSheet\SpreadSheet.csproj", "{33F620B5-C0D1-4C1F-9911-B01F42D1CE80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadsheetTests", "SpreadsheetTests\SpreadsheetTests.csproj", "{29BA2EF8-3313-4D03-8D89-578AE5806871}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadsheetTests", "SpreadsheetTests\SpreadsheetTests.csproj", "{29BA2EF8-3313-4D03-8D89-578AE5806871}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
