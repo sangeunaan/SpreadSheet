@@ -10,17 +10,18 @@ Project:    Formula
 Copyright:  CS 3500 and [Sangeun An] - This work may not be copied for use in Academic Coursework.
 ```
 
-# Comments to Formula:
+# Comments to Spreadsheet:
 
-The goal of this project is refactoring the formula evaluator from Assignment 1.
-This class library provide the programs to handle various exceptions about the inappropriate expressions, which is well known as the syntax error.
-The newly added function in this project is to determine and assign the value of a variable using delegates.
-
+The goal of this project is Refactoring the Spreadsheet from AS4, which implement the cell that contains the name and the contents.
+The program also sets and gets the value and the contents by calculating the contents of each cells and their dependencies.
+What is new for AS5 is the new class and methods to save the spreadsheet file as XML 
+and check whether the file has changed or not. 
 
 # Assignment Specific Topics:
 
-It was confusing to load the Evaluator function from FormulaEvaluator library to this project, due to the parameters.
-Calling the function from the reference library instead of modifying the method was the challenging work.
+Saving the file as XML was the most complicating task for this assignment.
+The usage of the methods for System.XML was helpful to make the new classes to save the file.
+And I am still figuring out the way without adding new class to read the file for getting changed version of file.
 
 # Consulted Peers:
 
@@ -28,5 +29,5 @@ No Peer
 
 # References:
 
-    1. Lambda expressions and anonymous functions - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions
-    2. C# Delegates-https://www.tutorialsteacher.com/csharp/csharp-delegates
+    1. https://ehpub.co.kr/xml-net-8-xmlwritersettings-%EA%B0%9C%EC%9A%94/
+    2. XmlReader.Create Method-https://learn.microsoft.com/ko-kr/dotnet/api/system.xml.xmlreader.create?view=net-7.0
