@@ -193,7 +193,7 @@ namespace SpreadsheetTests
             sheet1.SetContentsOfCell("B1", "=D1 + E1");
             sheet1.SetContentsOfCell("C1", "=F1");
             sheet1.SetContentsOfCell("A1", "=B1 + C1");
-            sheet1.Save("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\spreadsheet-test-1.xml");
+            sheet1.Save("save.txt");
             Spreadsheet sheet2 = new Spreadsheet();
             string version = sheet2.GetSavedVersion(null);
         }
@@ -212,7 +212,7 @@ namespace SpreadsheetTests
             sheet1.SetContentsOfCell("B1", "=D1 + E1");
             sheet1.SetContentsOfCell("C1", "=F1");
             sheet1.SetContentsOfCell("A1", "=B1 + C1");
-            sheet1.Save("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\spreadsheet-test-1.xml");
+            sheet1.Save("save.txt");
             Spreadsheet sheet2 = new Spreadsheet();
             string version = sheet2.GetSavedVersion("");
         }
@@ -225,7 +225,7 @@ namespace SpreadsheetTests
         public void TestMethod44()
         {
             Spreadsheet sheet2 = new Spreadsheet();
-            string version = sheet2.GetSavedVersion("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\this-file-does-not-exist.xml");
+            string version = sheet2.GetSavedVersion("save.txt");
         }
 
         /// <summary
@@ -236,7 +236,7 @@ namespace SpreadsheetTests
         public void TestMethod45()
         {
             Spreadsheet sheet2 = new Spreadsheet();
-            string version = sheet2.GetSavedVersion("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-form-1.xml");
+            string version = sheet2.GetSavedVersion("save.txt");
         }
 
         /// <summary
@@ -247,7 +247,7 @@ namespace SpreadsheetTests
         public void TestMethod46()
         {
             Spreadsheet sheet2 = new Spreadsheet();
-            string version = sheet2.GetSavedVersion("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-form-2.xml");
+            string version = sheet2.GetSavedVersion("save.txt");
         }
 
         /// <summary
@@ -258,7 +258,7 @@ namespace SpreadsheetTests
         public void TestMethod47()
         {
             Spreadsheet sheet2 = new Spreadsheet();
-            string version = sheet2.GetSavedVersion("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-form-3.xml");
+            string version = sheet2.GetSavedVersion("save.txt");
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace SpreadsheetTests
         [ExpectedException(typeof(SpreadsheetReadWriteException))]
         public void TestMethod49()
         {
-            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\", s => true, s => s, "2.0");
+            Spreadsheet sheet1 = new Spreadsheet("save.txt", s => true, s => s, "2.0");
         }
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace SpreadsheetTests
         [ExpectedException(typeof(SpreadsheetReadWriteException))]
         public void TestMethod51()
         {
-            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\versions-do-not-match.xml", s => true, s => s, "3.0");
+            Spreadsheet sheet1 = new Spreadsheet("save.txt", s => true, s => s, "3.0");
         }
 
         /// <summary>
@@ -305,7 +305,7 @@ namespace SpreadsheetTests
         [ExpectedException(typeof(SpreadsheetReadWriteException))]
         public void TestMethod53()
         {
-            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-cell-xml.xml", s => true, s => s, "2.0");
+            Spreadsheet sheet1 = new Spreadsheet("save.txt", s => true, s => s, "2.0");
         }
 
 
