@@ -1,4 +1,28 @@
-﻿using System;
+﻿///```
+///Author: [SangeunAn]
+///Partner: None
+///Date:       21 - Oct - 2023
+///Course: CS 3500, ECE
+///GitHub ID:  [Hayoung-Im]
+///Repo: https://github.com/Fall-2023-CS3500-Class/spreadsheet-sangeunaan
+///Solution:   Spreadsheet
+///Copyright:  CS 3500 and [Sangeun An] -This work may not be copied for use in Academic Coursework.
+///```
+///
+///add AS5
+///
+///Author: [Sangeun An]
+///Partner: None
+///Date:       01 - Nov - 2023
+///Course: CS 3500, ECE
+///GitHub ID:  [Hayoung-Im]
+///Repo: https://github.com/Fall-2023-CS3500-Class/spreadsheet-sangeunaan
+///Solution:   Spreadsheet
+///Copyright:  CS 3500 and [Sangeun An] -This work may not be copied for use in Academic Coursework.
+///```
+///
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -166,32 +190,32 @@ namespace SS
 
                 using (XmlWriter writer = XmlWriter.Create(filename, settings))
                 {
-                    writer.WriteStartDocument(); 
-                    writer.WriteStartElement("spreadsheet");     
+                    writer.WriteStartDocument();
+                    writer.WriteStartElement("spreadsheet");
                     writer.WriteAttributeString("version", null, Version);
 
                     foreach (string cell in cells.Keys)
                     {
-                        writer.WriteStartElement("cell");                         
-                        writer.WriteElementString("name", cell);                                            
+                        writer.WriteStartElement("cell");
+                        writer.WriteElementString("name", cell);
 
-                        string cell_contents; 
+                        string cell_contents;
 
                         // If the cell contains a double d, d.ToString() should be written as the contents.  
                         if (cells[cell].contents is double)
-                        {                        
+                        {
                             cell_contents = cells[cell].contents.ToString();
                         }
 
                         // If the cell contains a Formula f, f.ToString() with "=" prepended should be written as the contents.
                         else if (cells[cell].contents is Formula)
-                        { 
+                        {
                             cell_contents = "=" + cells[cell].contents.ToString();
                         }
 
                         // If the cell contains a string, it should be written as the contents.  
                         else
-                        { 
+                        {
                             cell_contents = (string)cells[cell].contents;
                         }
 
@@ -569,7 +593,7 @@ namespace SS
                             if (set_contents)
                                 SetContentsOfCell(name, contents);
 
-                        }                       
+                        }
                     }
                 }
             }
