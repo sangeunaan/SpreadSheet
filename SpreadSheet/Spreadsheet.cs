@@ -10,6 +10,7 @@ using System.IO;
 
 namespace SS
 {
+
     public class Spreadsheet : AbstractSpreadsheet
     {
         // dictionary maps cell name (row, col) to the cell itself
@@ -269,6 +270,7 @@ namespace SS
         /// For example, if name is A1, B1 contains A1*2, and C1 contains B1+A1, the
         /// set {A1, B1, C1} is returned.
         /// </summary>
+
         public override IList<string> SetContentsOfCell(string name, string content)
         {
             // the content we want to set in a cell can't be null
@@ -287,7 +289,6 @@ namespace SS
             // if content is empty, just add it to the cell
             if (content.Equals(""))
                 all_dependents = new List<String>(SetCellContents(name, content));
-            // if we can parse content as a double, set the named cell contents to result
             else if (Double.TryParse(content, out result))
                 all_dependents = new List<String>(SetCellContents(name, result));
             // otherwise, if content begins with '=' then try to parse it as a formula
@@ -299,26 +300,12 @@ namespace SS
                 // 1. If content can't be parsed as a Formula this will throw a FormulaFormatException
                 Formula f = new Formula(formula_as_string, Normalize, IsValid);
 
-                // 2. If this creates a circular dependency, will throw a CircularException
-                // 3. Otherwise, the contents of 'name' become f
                 all_dependents = new List<String>(SetCellContents(name, f));
             }
-            else // otherwise, the content is a string so just set the cell to that string
+            else
                 all_dependents = new List<String>(SetCellContents(name, content));
 
-            // Loop here to re-evaluate cells in all_dependees;
-
-            // after changing cell content, set changed to true
             Changed = true;
-
-            // for each dependent, re-evaluate it based on the new dependee value
-            foreach (string s in all_dependents)
-            {
-                Cell cell_value; // value associated with key
-                // try to get the key, if we find it, re-evaluate it
-                if (cells.TryGetValue(s, out cell_value))
-                    cell_value.ReEvaluate(LookupValue);
-            }
 
             return all_dependents;   // return list of all the dependees of the cell            
         }
