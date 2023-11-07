@@ -9,10 +9,6 @@ namespace SpreadsheetTests
     [TestClass]
     public class SpreadsheetTests
     {
-        /// <summary>
-        ///     Tests if all the constructors work. This test simply assumes that an error will
-        ///     not be thrown for any of the constructors.
-        /// </summary>
         [TestMethod]
         public void TestMethod0()
         {
