@@ -151,16 +151,12 @@ namespace SS
         /// </summary>
         public override void Save(string filename)
         {
-            // if the spreadsheet hasn't been changed, we don't need to save anything
-            //if (Changed == false)
-            //    return;
-
             // the filename can't be null
-            if (ReferenceEquals(filename, null))
+            if (filename == null)
                 throw new SpreadsheetReadWriteException("The filename cannot be null");
 
             // the filename can't be empty
-            if (filename.Equals(""))
+            if (filename == "")
                 throw new SpreadsheetReadWriteException("The filename cannot be empty");
 
             try
@@ -168,32 +164,34 @@ namespace SS
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Indent = true;
 
-                // for some reason more tests fail when I don't set indent = true
                 using (XmlWriter writer = XmlWriter.Create(filename, settings))
                 {
-                    writer.WriteStartDocument(); // start document
-                    writer.WriteStartElement("spreadsheet"); // open spreadsheet tag                
+                    writer.WriteStartDocument(); 
+                    writer.WriteStartElement("spreadsheet");     
                     writer.WriteAttributeString("version", null, Version);
+
                     foreach (string cell in cells.Keys)
                     {
-                        writer.WriteStartElement("cell");   // open cell tag                        
-                        writer.WriteElementString("name", cell);   // open name tag                                               
+                        writer.WriteStartElement("cell");                         
+                        writer.WriteElementString("name", cell);                                            
 
-                        string cell_contents; // will hold the contents of this cell
-                        // check the type of the contents of the cell
+                        string cell_contents; 
+
+                        // If the cell contains a double d, d.ToString() should be written as the contents.  
                         if (cells[cell].contents is double)
-                        {   //  if the contents of this cell is a double
-                            //  save the contents as a double.ToString();                        
+                        {                        
                             cell_contents = cells[cell].contents.ToString();
                         }
+
+                        // If the cell contains a Formula f, f.ToString() with "=" prepended should be written as the contents.
                         else if (cells[cell].contents is Formula)
-                        {   //  if the contents of this cell is a Formula
-                            //  prepend "=" and save the contents as a Formula.ToString();
+                        { 
                             cell_contents = "=" + cells[cell].contents.ToString();
                         }
+
+                        // If the cell contains a string, it should be written as the contents.  
                         else
-                        {   //  otherwise the contents of this cell is a string
-                            //  save the contents as the string;
+                        { 
                             cell_contents = (string)cells[cell].contents;
                         }
 
@@ -203,8 +201,8 @@ namespace SS
                     writer.WriteEndElement();               // close spreadsheet tag
                     writer.WriteEndDocument(); // end document  
 
-                } // END Using
-            } // END try
+                }
+            }
             catch (XmlException e)
             {
                 throw new SpreadsheetReadWriteException(e.ToString());

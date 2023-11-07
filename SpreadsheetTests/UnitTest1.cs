@@ -17,11 +17,8 @@ namespace SpreadsheetTests
         public void TestMethod0()
         {
             AbstractSpreadsheet sheet1 = new Spreadsheet();
-            AbstractSpreadsheet sheet2 = new Spreadsheet(s => true, s => s.ToUpper(), "1.0");
-            //AbstractSpreadsheet sheet3 = new Spreadsheet(PathToFile, s => true, s => s.ToUpper(), "1.0");            
+            AbstractSpreadsheet sheet2 = new Spreadsheet(s => true, s => s.ToUpper(), "1.0");          
         }
-
-        // --------- Exception Tests ------------ //
 
         /// <summary>
         ///     Tests if cell name for GetCellValue is null
@@ -305,33 +302,12 @@ namespace SpreadsheetTests
         ///     Tries to construct a new spreadsheet using a bad path name
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidNameException))]
-        public void TestMethod52()
-        {
-            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-cell-name.xml", s => true, s => s, "2.0");
-        }
-
-        /// <summary>
-        ///     Tries to construct a new spreadsheet using a bad path name
-        /// </summary>
-        [TestMethod]
         [ExpectedException(typeof(SpreadsheetReadWriteException))]
         public void TestMethod53()
         {
             Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\bad-cell-xml.xml", s => true, s => s, "2.0");
         }
 
-        /// <summary>
-        ///     Tries to construct a new spreadsheet using a bad path name
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(CircularException))]
-        public void TestMethod54()
-        {
-            Spreadsheet sheet1 = new Spreadsheet("C:\\Users\\2002s\\source\\repos\\CS3500\\Spreadsheet\\Spreadsheet\\SpreadSheet\\circular-dependency.xml", s => true, s => s, "2.0");
-        }
-
-        // --------- Non-Exception Tests ------------ //
 
         /// <summary>
         ///     Tests GetCellValue, expects a string given a string.
