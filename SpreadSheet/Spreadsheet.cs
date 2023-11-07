@@ -274,11 +274,11 @@ namespace SS
         public override IList<string> SetContentsOfCell(string name, string content)
         {
             // the content we want to set in a cell can't be null
-            if (ReferenceEquals(content, null))
+            if (content == null)
                 throw new ArgumentNullException();
 
             // the name of the cell we want to set can't be null, and must be a valid name
-            if (ReferenceEquals(name, null) || !(IsValidName(name)))
+            if ((name == null) || !(IsValidName(name)))
                 throw new InvalidNameException();
 
             // holds the list of dependees to be returned from the correct SetCellContents method
@@ -320,11 +320,19 @@ namespace SS
         }
 
         /// <summary>
-        /// If name is null or invalid, throws an InvalidNameException.
-        /// 
-        /// Otherwise, returns the contents (as opposed to the value) of the named cell.  The return
-        /// value should be either a string, a double, or a Formula.
+        ///   Returns the contents (as opposed to the value) of the named cell.
         /// </summary>
+        /// 
+        /// <exception cref="InvalidNameException"> 
+        ///   Thrown if the name is invalid: blank/empty/""
+        /// </exception>
+        /// 
+        /// <param name="name">The name of the spreadsheet cell to query</param>
+        /// 
+        /// <returns>
+        ///   The return value should be either a string, a double, or a Formula.
+        ///   See the class header summary 
+        /// </returns>
         public override object GetCellContents(String name)
         {
             if (ReferenceEquals(name, null) || !(IsValidName(name)))
@@ -484,7 +492,7 @@ namespace SS
         /// </summary>
         protected override IEnumerable<String> GetDirectDependents(String name)
         {
-            if (ReferenceEquals(name, null))
+            if (name == null)
                 throw new ArgumentNullException();
 
             if (!(IsValidName(name)))
@@ -508,7 +516,7 @@ namespace SS
         }
 
         /// <summary>
-        /// Private helper method to read in a spreadsheet from an xml file
+        /// read  a spreadsheet from an xml file
         /// </summary>
         /// <param name="filename">the filename we are reading the spreadsheet from</param>
         /// <param name="only_get_version">true if we only want the verison of the spreadsheet, false otherwise</param>
@@ -558,15 +566,15 @@ namespace SS
                                     contents = reader.Value;
                                     set_contents = true;
                                     break;
-                            } // end switch
+                            }
 
                             if (set_contents)
                                 SetContentsOfCell(name, contents);
 
-                        } // end if                        
-                    } // end while
-                } // end using
-            } // end try
+                        }                       
+                    }
+                }
+            }
             catch (XmlException e)
             {
                 throw new SpreadsheetReadWriteException(e.ToString());
@@ -645,7 +653,7 @@ namespace SS
                 }
             }
 
-        } // END Cell class
+        }
 
         /// <summary>
         ///     Helper method for evaluating functions. This will return the value
@@ -669,8 +677,8 @@ namespace SS
             else // if it does not contain 's' throw an exception
                 throw new ArgumentException();
 
-        } // END LoopupValue class
+        }
 
-    } // END Spreadsheet class
+    }
 
-} // END SS Namespace
+}
