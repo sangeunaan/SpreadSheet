@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -7,10 +8,6 @@ using System.Threading.Tasks;
 
 namespace FormulaEvaluator
 {
-    /// <summary>
-    /// <author> Sangeun An </author>
-    /// Evaluates a function using an infix algorithm.
-    /// </summary>
     public static class Evaluator
     {
         /// <summary>
@@ -19,21 +16,7 @@ namespace FormulaEvaluator
         /// <param name="s"></param>
         /// <returns></returns>
         public delegate double Lookup(string s);
-        /// <summary>
-        ///evaluates a given expression down to a single number
-        /// </summary>
-        /// <remarks>
-        ///		<para>variables should begin with a letter</para>
-        ///		<para></para>
-        ///		<para></para>
-        /// </remarks>
-        /// <exception cref="ArgumentException">Throws if division by zero occurs OR expression is missing open parantheses OR an entered variable is formatted incorrectly</exception>
-        /// <param name="exp">the expression given by the user</param>
-        /// <param name="variableEvaluator">function for putting integer values in place of variables</param>
-        /// <returns>Long. the result of the expression</returns>
-        /// <exception cref="ArgumentException">Thrown if  a variable can't be parsed
-        /// or the given formula isn't formatted correctly</exception>
-        /// <exception cref="DivideByZeroException"> thrown if division by zero oc curs</exception>
+    
         public static double Evaluate(string expression, Func<string, double> variableEvaluator)
         {
             Stack<string> operators = new Stack<string>();
@@ -183,25 +166,32 @@ namespace FormulaEvaluator
         private static double Math(double left, string op, double right)
         {
             double result = 0;
-            switch (op)
+
+            if(op == "*")
             {
-                case "*":
-                    result = left * right;
-                    break;
-                case "/":
-                    if (right == 0)
-                    {
-                        Console.WriteLine("cannot divide by zero");
-                    }
-                    result = left / right;
-                    break;
-                case "+":
-                    result = left + right;
-                    break;
-                case "-":
-                    result = left - right;
-                    break;
+                result = left * right;
             }
+            else if(op =="/")
+            {
+                if (right == 0)
+                {
+                    throw new DivideByZeroException("you cannot divide by zero.");
+                }
+                else
+                {
+                    result = left / right;
+                }
+
+            }
+            else if (op == "+")
+            {
+                result = left + right;
+            }
+            else if(op == "-")
+            {
+                result = left - right;
+            }
+
             return result;
         }
     }

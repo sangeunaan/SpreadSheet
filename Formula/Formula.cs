@@ -181,7 +181,7 @@ namespace SpreadsheetUtilities
                 if (rightParen != leftParen)
                 {
                     throw new FormulaFormatException("error: open and close parentheses do not match");
-                } 
+                }
                 pieces = new List<string>(tokenFormula);
 
             }
@@ -309,6 +309,7 @@ namespace SpreadsheetUtilities
 
                         double theirDouble = 0.0;
                         double ourDouble = 0.0;
+
                         if (Double.TryParse(token, out theirDouble) && Double.TryParse(pieces[i], out ourDouble))
                         {
                             if (!(theirDouble == ourDouble))
@@ -321,8 +322,7 @@ namespace SpreadsheetUtilities
                             return false;
                         }
 
-                    } //end foreach
-                      //made it through every element
+                    } 
                     return true;
                 }
             }

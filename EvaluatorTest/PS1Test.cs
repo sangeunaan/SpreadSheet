@@ -21,7 +21,7 @@ namespace EvaluatorTest
         {
             //Formula test = new Formula("5");
             //object s = 
-            Assert.AreEqual(5, Formula.Evaluate("5", s => 0));
+            Assert.AreEqual(5, Evaluator.Evaluate("5", s => 0));
         }
 
         [TestMethod()]
@@ -174,7 +174,7 @@ namespace EvaluatorTest
         [TestMethod()]
         public void TestComplexMultiVar()
         {
-            Assert.AreEqual(6, Evaluator.Evaluate("y1*3-8/2+4*(8-9*2)/14*x7", s => (s == "x7") ? 1 : 4));
+            Assert.AreEqual(6, Evaluator.Evaluate("(y1*3-8/2)+4*(8-9*2)/14*x7", s => (s == "x7") ? 1 : 4));
         }
 
         [TestMethod()]
