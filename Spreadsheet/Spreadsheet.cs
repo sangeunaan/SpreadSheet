@@ -3,7 +3,7 @@
 ///Partner: None
 ///Date:       21 - Oct - 2023
 ///Course: CS 3500, ECE
-///GitHub ID:  [Hayoung-Im]
+///GitHub ID:  [sangeunaan]
 ///Repo: https://github.com/Fall-2023-CS3500-Class/spreadsheet-sangeunaan
 ///Solution:   Spreadsheet
 ///Copyright:  CS 3500 and [Sangeun An] -This work may not be copied for use in Academic Coursework.
@@ -15,7 +15,7 @@
 ///Partner: None
 ///Date:       01 - Nov - 2023
 ///Course: CS 3500, ECE
-///GitHub ID:  [Hayoung-Im]
+///GitHub ID:  [sangeunaan]
 ///Repo: https://github.com/Fall-2023-CS3500-Class/spreadsheet-sangeunaan
 ///Solution:   Spreadsheet
 ///Copyright:  CS 3500 and [Sangeun An] -This work may not be copied for use in Academic Coursework.
@@ -31,6 +31,7 @@ using SpreadsheetUtilities;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.IO;
+using SpreadsheetUtilities;
 
 namespace SS
 {
@@ -382,9 +383,11 @@ namespace SS
         /// </summary>
         protected override IList<String> SetCellContents(String name, double number)
         {
-            // Dead code due to requirements for SetContentsOfCell
-            //if (ReferenceEquals(name, null) || !(IsValidName(name)))
-            //    throw new InvalidNameException();
+
+            //Setter for the Cell contents
+
+            if (ReferenceEquals(name, null) || !(IsValidName(name)))
+                throw new InvalidNameException();
 
             // Create a new cell
             Cell cell = new Cell(number);
@@ -394,7 +397,7 @@ namespace SS
                 cells.Add(name, cell);      // otherwise add a new key for that value
 
             // replace the dependents of 'name' in the dependency graph with an empty hash set
-            dg.ReplaceDependees(name, new HashSet<String>());
+            dg.ReplaceDependees(name, new List<String>());
 
             // recalculate at end
             List<String> all_dependees = new List<String>(GetCellsToRecalculate(name));
@@ -415,28 +418,25 @@ namespace SS
         /// </summary>
         protected override IList<String> SetCellContents(String name, String text)
         {
-            // Dead code due to requirements for SetContentsOfCell
-            //if (ReferenceEquals(text, null))
-            //    throw new ArgumentNullException();
+            if (text == null)
+                throw new ArgumentNullException();
 
-            // Dead code due to requirements for SetContentsOfCell
-            //if (ReferenceEquals(name, null) || !(IsValidName(name)))
-            //    throw new InvalidNameException();
+            if ((name == null) || !(IsValidName(name)))
+                throw new InvalidNameException();
 
-            // Create a new cell
+
             Cell cell = new Cell(text);
+
             if (cells.ContainsKey(name))    // if it already contains that key
                 cells[name] = cell;         // replace the key with the new value
             else
                 cells.Add(name, cell);      // otherwise add a new key for that value
 
-            string cell_content = (string)cells[name].contents; // cast is since we know it is a string
-
-            if (cell_content.Equals("")) // if the contents is an empty string, we don't want it in the dictionary
+            if (cells[name].contents == "") // if the contents is an empty string, we don't want it in the dictionary
                 cells.Remove(name);
 
             // replace the dependents of 'name' in the dependency graph with an empty hash set
-            dg.ReplaceDependees(name, new HashSet<String>());
+            dg.ReplaceDependees(name, new List<String>());
 
             // recalculate at end
             List<String> all_dependees = new List<String>(GetCellsToRecalculate(name));
@@ -460,15 +460,13 @@ namespace SS
         /// </summary>
         protected override IList<String> SetCellContents(String name, Formula formula)
         {
-            // Dead code due to requirements for SetContentsOfCell
-            //if (ReferenceEquals(formula, null))
-            //throw new ArgumentNullException();
+            if (formula == null)
+                throw new ArgumentNullException();
 
-            // Dead code due to requirements for SetContentsOfCell
-            //(ReferenceEquals(name, null) || !(IsValidName(name)))
-            //    throw new InvalidNameException();
+            if ((name == null) || !(IsValidName(name)))
+                throw new InvalidNameException();
 
-            // temp variable to hold old dependents 
+            // temp variable to hold old dependent.
             IEnumerable<String> old_dependees = dg.GetDependees(name);
 
             // replace the dependents of 'name' in the dependency graph with the variables in formula
@@ -607,6 +605,17 @@ namespace SS
             }
 
             return Version;
+        }
+
+        private string writeContents(object cellContents)
+        {
+            if (cellContents is Formula)
+                return "=" + cellContents.ToString();
+            if (cellContents is double)
+                return cellContents.ToString();
+            if (cellContents is string)
+                return cellContents as string;
+            throw new SpreadsheetReadWriteException("error writing Cell Contents");
         }
 
         /// <summary>
