@@ -3,7 +3,7 @@
 ///Partner: None
 ///Date:       21 - Oct - 2023
 ///Course: CS 3500, ECE
-///GitHub ID:  [Hayoung-Im]
+///GitHub ID:  [sangeunaan]
 ///Repo: https://github.com/Fall-2023-CS3500-Class/spreadsheet-sangeunaan
 ///Solution:   Spreadsheet
 ///Copyright:  CS 3500 and [Sangeun An] -This work may not be copied for use in Academic Coursework.
@@ -15,7 +15,7 @@
 ///Partner: None
 ///Date:       01 - Nov - 2023
 ///Course: CS 3500, ECE
-///GitHub ID:  [Hayoung-Im]
+///GitHub ID:  [sangeunaan]
 ///Repo: https://github.com/Fall-2023-CS3500-Class/spreadsheet-sangeunaan
 ///Solution:   Spreadsheet
 ///Copyright:  CS 3500 and [Sangeun An] -This work may not be copied for use in Academic Coursework.
