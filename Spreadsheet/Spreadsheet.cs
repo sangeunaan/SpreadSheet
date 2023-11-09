@@ -27,7 +27,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SpreadsheetUtilities;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.IO;
@@ -94,7 +93,7 @@ namespace SS
         /// its normalization method, and its version information.  The variable validity
         /// test is used throughout to determine whether a string that consists of one or
         /// more letters followed by one or more digits is a valid cell name.  The variable
-        /// equality test should be used thoughout to determine whether two variables are
+        /// equality test should be used throughout to determine whether two variables are
         /// equal.
         /// </summary>
         /// <param name="filepath"></param>
@@ -589,8 +588,7 @@ namespace SS
                             }
 
                             if (set_contents)
-                                SetContentsOfCell(name, contents);
-
+                                SetContentsOfCell(name, contents); 
                         }
                     }
                 }
