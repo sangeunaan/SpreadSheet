@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormulaTest", "FormulaTest\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadsheetTests", "SpreadsheetTests\SpreadsheetTests.csproj", "{29BA2EF8-3313-4D03-8D89-578AE5806871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadsheet", "Spreadsheet\Spreadsheet.csproj", "{D51857A7-585F-44C8-806C-3E27328D7406}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spreadsheet", "Spreadsheet\Spreadsheet.csproj", "{D51857A7-585F-44C8-806C-3E27328D7406}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{F5AD2FC1-2D5F-4E7E-90DA-A0A69919E182}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{D51857A7-585F-44C8-806C-3E27328D7406}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D51857A7-585F-44C8-806C-3E27328D7406}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D51857A7-585F-44C8-806C-3E27328D7406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5AD2FC1-2D5F-4E7E-90DA-A0A69919E182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5AD2FC1-2D5F-4E7E-90DA-A0A69919E182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5AD2FC1-2D5F-4E7E-90DA-A0A69919E182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5AD2FC1-2D5F-4E7E-90DA-A0A69919E182}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

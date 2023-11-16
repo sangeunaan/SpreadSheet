@@ -22,11 +22,6 @@
 /// <param name="v2"> v2 represents the second element of the value stack </param>
 /// <returns> The function will return the value of the calculated value, which is the top element of the value stack. </returns>
 
-// Skeleton written by Joe Zachary for CS 3500, September 2013
-// implemented by Dylan Noaker
-// Read the entire skeleton carefully and completely before you
-// do anything else!
-
 using System;
 using System.Collections.Generic;
 using System.Collections;
