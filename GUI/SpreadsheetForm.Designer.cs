@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
 
 namespace GUI
@@ -161,7 +162,8 @@ namespace GUI
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(1106, 537);
             dataGridView1.TabIndex = 8;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellContentClick += dataGridView1_CellClick;
             // 
             // Column1
             // 
@@ -398,6 +400,118 @@ namespace GUI
             tabPage1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+
+
+
+
         }
 
         #endregion

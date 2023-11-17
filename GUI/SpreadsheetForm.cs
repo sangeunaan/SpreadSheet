@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using SpreadsheetUtilities;
 using static FormulaEvaluator.Evaluator;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
 {
@@ -21,35 +22,16 @@ namespace GUI
 
         //the name of the file that will be saved
         private String fileName;
-
-        public Func<string, bool> IsValid { get; protected set; }
+        private String cellName;
 
         private Boolean IsValidName(String name)
         {
-            if (Regex.IsMatch(name, @"^[a-zA-Z]+[\d]+$") && IsValid(name))
+            if (Regex.IsMatch(name, @"^[a-zA-Z]+[\d]+$"))
                 return true;
             else return false;
         }
 
-        public void SelectedCell(out int column, out int row)
-        {
-            column = 
-            row = 
-        }
 
-        private String GetCellName()
-        {
-            //  column: 
-            int column, row;
-
-            dataGridView1.SelectedCell(out column, out row);
-            // for rows we want to start a 1 instead of 0 so add 1 to each term
-            int cellRow = ++row;
-            // since 'A' = 01000001 in binary, and col counts from 0 (0000), 1 (0001), 2 (0010)...
-            // then if we keep adding the next number to A the binary addition takes us from A-Z
-            char cellCol = (char)('A' + column);
-            return "" + cellCol + cellRow;
-        }
 
         public SpreadsheetForm()
         {
@@ -57,7 +39,19 @@ namespace GUI
             spreadsheet = new Spreadsheet(IsValidName, s => s.ToUpper(), "SpreadSheet");
         }
 
-        private void NewButton_Click(object sender, EventArgs e)
+        private void dataGridViewNormal_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            e.PaintCells(e.ClipBounds, DataGridViewPaintParts.All);
+            e.PaintHeader(DataGridViewPaintParts.Background | DataGridViewPaintParts.Border | DataGridViewPaintParts.Focus | DataGridViewPaintParts.SelectionBackground);
+            e.Handled = true;
+
+            using (SolidBrush b = new SolidBrush(dataGridView1.RowHeadersDefaultCellStyle.ForeColor))
+            {
+                e.Graphics.DrawString((e.RowIndex + 1).ToString(), e.InheritedRowStyle.Font, b, e.RowBounds.Location.X + 10, e.RowBounds.Location.Y + 4);
+            }
+        }
+
+            private void NewButton_Click(object sender, EventArgs e)
         {
             dataGridView1.Refresh();
         }
@@ -82,22 +76,22 @@ namespace GUI
 
         private void CellNameTextbox_TextChanged(object sender, EventArgs e)
         {
-
+            cellName = CellNameTextbox.Text;
         }
 
         private void CellContentsTextbox_TextChanged(object sender, EventArgs e)
         {
-
+            //spreadsheet.GetCellContents(cellName);
         }
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
-            CellValueTextbox.Text = Convert.ToString(Formula.Evaluate(CellContentsTextbox.Text()));
+            CellValueTextbox.Text = Convert.ToString(spreadsheet.GetCellValue(CellNameTextbox.Text));
         }
 
         private void CellValueTextbox_TextChanged(object sender, EventArgs e)
         {
-            CellValueTextbox.Text = spreadsheet.
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -115,9 +109,10 @@ namespace GUI
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            //CellNameTextbox.Text = 
+            CellContentsTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
         }
     }
 }
